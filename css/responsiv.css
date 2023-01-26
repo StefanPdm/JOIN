@@ -1,0 +1,309 @@
+/* *************************** Media < 1370px****************** */
+
+/* *********************** responsiv BOARD******************** */
+@media (width < 1370px) {
+  body {
+    outline: none;
+  }
+
+  .maincontainer-board {
+    padding-left: 0;
+    height: auto;
+  }
+
+  .board-main {
+    padding: 33px;
+    align-items: center;
+    height: auto;
+    margin: -68px 0 0 0;
+  }
+
+  .board-headline {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 340px;
+    gap: 30px;
+    margin-bottom: 9px;
+  }
+
+  .task-main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding-bottom: 90px;
+  }
+
+  .board-headline button:nth-child(1) {
+    display: none;
+  }
+
+  #btn-board-responsive {
+    display: block !important;
+    margin-top: -185px;
+    margin-left: 13px;
+  }
+
+  .container-headline {
+    padding: 30px 0 20px 0;
+
+  }
+
+  .task-sub-container {
+    min-height: fit-content;
+    width: 340px;
+  }
+
+  .hide-text {
+    display: block;
+  }
+
+  .kpmt {
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  /*for responsive addTask-view */
+  .just-responsive {
+    display: block;
+  }
+
+  .hide-in-responsive {
+    display: none;
+  }
+
+  .show-task,
+  .edit-card {
+    position: fixed;
+    top: 88px;
+    bottom: 5.5%;
+    background-color: #f6f7f8;
+    width: 100%;
+    min-height: unset;
+    border-radius: unset;
+    box-shadow: none;
+    animation: none;
+    padding: 25px 5% 0 5%;
+  }
+
+  .show-task-title {
+    font-size: 36px;
+
+  }
+
+  .show-task-title,
+  .show-task-description,
+  .show-task-date,
+  .show-task-priority {
+    margin-bottom: 15px;
+  }
+
+  #show-assigned,
+  .show-subtask-list {
+    margin-top: -15px;
+  }
+
+  .show-member {
+    margin-bottom: 2px;
+  }
+
+  .button-edit {
+    position: fixed;
+    bottom: 50px;
+    width: 45px;
+    height: 45px;
+    background-position: center center;
+    left: calc(100% - 45px - 5%);
+  }
+
+  .button-edit:hover {
+    background-position: center center;
+  }
+
+  .button-close {
+    top: 20px;
+    left: calc(100% - 31px - 5%);
+  }
+
+  .show-assigned-subtask {
+    gap: 3%;
+  }
+
+  .show-subtask {
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+
+  .show-subtask img {
+    margin-right: 40px;
+    margin-left: 13px;
+  }
+
+
+  /* edit Container */
+  .edit-card,
+  .edit-card input,
+  .edit-card textarea {
+    font-size: 16px;
+  }
+
+  .edit-card textarea {
+    height: 75px;
+    margin-bottom: 20px;
+  }
+
+  .edit-description {
+    margin-bottom: 0;
+  }
+
+  .edit-due-date {
+    margin-bottom: 20px;
+  }
+
+  .edit-due-date input {
+    padding: 6px 21px;
+  }
+
+  .edit-ring-container {
+    display: none;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+
+  .edit-prio-container {
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .button-save {
+    right: 1%;
+    width: 40px;
+    height: 40px;
+  }
+
+  .button-save div:first-child {
+    display: none;
+  }
+
+  .edit-card .button-close {
+    left: calc(100% - 31px - 1%);
+  }
+
+  .pullDown {
+    max-height: 170px !important;
+  }
+}
+
+
+/* *******************responsiv Navbar & Header*/
+@media (width < 1370px) {
+  .navbar-bottom {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .navbar-left {
+    display: none;
+  }
+
+  .header {
+    padding: 20px 25px 20px 25px;
+  }
+
+  .header span {
+    display: none;
+  }
+
+  .header-headline {
+    display: none;
+  }
+
+  .header-logo {
+    display: block;
+  }
+
+  .hide-help {
+    display: none;
+  }
+}
+
+
+/* *************************** Media < 470px****************** */
+/* *********************** responsiv BOARD******************** */
+@media (width < 470px) {
+  body {
+    align-items: center;
+  }
+
+  .maincontainer-board {
+    justify-content: center;
+  }
+
+  .overflowHidden {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .board-main {
+    padding: 15px 0 0 0;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 90%;
+  }
+
+  .kpmt {
+    font-size: 18px;
+  }
+
+  .board-headline {
+    width: 100%;
+    position: relative;
+    gap: 20px;
+  }
+
+  .task-main-container {
+    width: 100%;
+  }
+
+  .task-sub-container {
+    width: 100%;
+  }
+
+  #btn-board-responsive {
+    position: absolute;
+    top: 52px;
+    right: 0;
+    margin: 0;
+  }
+
+  .card-container {
+    gap: 20px;
+  }
+
+  .show-assigned-subtask {
+    flex-direction: column-reverse;
+  }
+
+  .show-subtask {
+    padding-top: px;
+    padding-bottom: 15px;
+    height: auto;
+  }
+}
+
+
+/* *********************** responsiv Navbar******************** */
+@media (width < 470px) {
+  .navbar-bottom a span {
+    font-size: 12px;
+  }
+
+  .navbar-bottom a {
+    padding: 8px;
+  }
+}

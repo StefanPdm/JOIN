@@ -1,0 +1,18 @@
+<div class="header bg-white">
+   <div class="header-logo"><img src="./assets/img/header/logo.png" alt=""></div>
+   <span class="header-headline text-21-black"> Kanban Project Management Tool</span>
+   <div class="header-right">
+      <img src="./assets/img/header/question-mark.svg" class="hide-help" id="help" onclick="openHelp()">
+      <div class="user-img-container">
+         <img id="headerUserImg" src="./assets/img/header/img-dummy.png" alt="" onclick="showMenu()">
+      </div>
+   </div>
+</div>
+
+<div class="log-out-bg d-none" id="log-out" onclick="closeLogoutMenu()">
+   <div class="log-out" onclick="doNotClose(event)">
+      <a href="help.html" class="hide-link">Help</a>
+      <a href="legal_notice.html" class="hide-link">Legal Notice</a>
+      <span onclick="logOut()">Log out</span>
+   </div>
+</div>

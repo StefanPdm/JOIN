@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: js/legal_notice_help.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: js/legal_notice_help.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>async function initLegalHelp() {
+    await includeHTML();
+    getLoggedUser();
+}
+
+
+/**
+ * starts when clicked on arrow on "legal-notice"- and "help"-page
+ * redirects to "summary"-page
+ */
+function backToSummary() {
+    window.location.href = 'summary.html';
+}
+
+
+function getLoggedUser() {
+    currentUser = JSON.parse(localStorage.getItem('logged User') || '9999');
+    if (currentUser == '9999') {
+        return;
+    } else {
+        document.getElementById('headerUserImg').src = "./assets/img/header/christina.png";
+    }
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addNewSubtask">addNewSubtask</a></li><li><a href="global.html#addTask">addTask</a></li><li><a href="global.html#addToUsers">addToUsers</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#backToBoard">backToBoard</a></li><li><a href="global.html#backToSummary">backToSummary</a></li><li><a href="global.html#changeBI">changeBI</a></li><li><a href="global.html#checkAssigned">checkAssigned</a></li><li><a href="global.html#checkDate">checkDate</a></li><li><a href="global.html#checkEditAssigned">checkEditAssigned</a></li><li><a href="global.html#checkMail">checkMail</a></li><li><a href="global.html#checkSubtask">checkSubtask</a></li><li><a href="global.html#checkSubtasks">checkSubtasks</a></li><li><a href="global.html#checkTime">checkTime</a></li><li><a href="global.html#clearContent">clearContent</a></li><li><a href="global.html#clearForm">clearForm</a></li><li><a href="global.html#closeCard">closeCard</a></li><li><a href="global.html#closeLogoutMenu">closeLogoutMenu</a></li><li><a href="global.html#createBox">createBox</a></li><li><a href="global.html#directToAddTask">directToAddTask</a></li><li><a href="global.html#discardInvitation">discardInvitation</a></li><li><a href="global.html#doNotClose">doNotClose</a></li><li><a href="global.html#dontRememberMe">dontRememberMe</a></li><li><a href="global.html#editSetNewPrio">editSetNewPrio</a></li><li><a href="global.html#filterTasks">filterTasks</a></li><li><a href="global.html#findIndexOf">findIndexOf</a></li><li><a href="global.html#formValidation">formValidation</a></li><li><a href="global.html#formValidationOfEditTask">formValidationOfEditTask</a></li><li><a href="global.html#generateCardHTML">generateCardHTML</a></li><li><a href="global.html#getCapitals">getCapitals</a></li><li><a href="global.html#getLoggedUser">getLoggedUser</a></li><li><a href="global.html#getRandomColor">getRandomColor</a></li><li><a href="global.html#guestLogin">guestLogin</a></li><li><a href="global.html#highlight">highlight</a></li><li><a href="global.html#includeHTML">includeHTML</a></li><li><a href="global.html#initAddTask">initAddTask</a></li><li><a href="global.html#initBoard">initBoard</a></li><li><a href="global.html#invisiblePassword">invisiblePassword</a></li><li><a href="global.html#loadCategories">loadCategories</a></li><li><a href="global.html#loadJSONFromServer">loadJSONFromServer</a></li><li><a href="global.html#loadSavedData">loadSavedData</a></li><li><a href="global.html#logOut">logOut</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#newCategory">newCategory</a></li><li><a href="global.html#openEditCard">openEditCard</a></li><li><a href="global.html#openForgotPassword">openForgotPassword</a></li><li><a href="global.html#openHelp">openHelp</a></li><li><a href="global.html#openLogIn">openLogIn</a></li><li><a href="global.html#openSignUp">openSignUp</a></li><li><a href="global.html#pullDown">pullDown</a></li><li><a href="global.html#pullDownMenu">pullDownMenu</a></li><li><a href="global.html#rememberMe">rememberMe</a></li><li><a href="global.html#removeHighlight">removeHighlight</a></li><li><a href="global.html#renderAddSubtask">renderAddSubtask</a></li><li><a href="global.html#renderAddedSubtask">renderAddedSubtask</a></li><li><a href="global.html#renderAwait">renderAwait</a></li><li><a href="global.html#renderCardHTML">renderCardHTML</a></li><li><a href="global.html#renderCategories">renderCategories</a></li><li><a href="global.html#renderContacts">renderContacts</a></li><li><a href="global.html#renderDone">renderDone</a></li><li><a href="global.html#renderEditAssigned">renderEditAssigned</a></li><li><a href="global.html#renderEditCard">renderEditCard</a></li><li><a href="global.html#renderEditPrio">renderEditPrio</a></li><li><a href="global.html#renderEditRings">renderEditRings</a></li><li><a href="global.html#renderLetter">renderLetter</a></li><li><a href="global.html#renderNewCategory">renderNewCategory</a></li><li><a href="global.html#renderPrio">renderPrio</a></li><li><a href="global.html#renderProgress">renderProgress</a></li><li><a href="global.html#renderShowAssigned">renderShowAssigned</a></li><li><a href="global.html#renderShowPriority">renderShowPriority</a></li><li><a href="global.html#renderShowSubtasks">renderShowSubtasks</a></li><li><a href="global.html#renderSubtask">renderSubtask</a></li><li><a href="global.html#renderSubtaskBoard">renderSubtaskBoard</a></li><li><a href="global.html#renderTodos">renderTodos</a></li><li><a href="global.html#replacePassword">replacePassword</a></li><li><a href="global.html#requiredText">requiredText</a></li><li><a href="global.html#saveEditTask">saveEditTask</a></li><li><a href="global.html#saveJSONToServer">saveJSONToServer</a></li><li><a href="global.html#selectCategory">selectCategory</a></li><li><a href="global.html#setNewCategory">setNewCategory</a></li><li><a href="global.html#setNewCategoryColor">setNewCategoryColor</a></li><li><a href="global.html#setPrio">setPrio</a></li><li><a href="global.html#setPrioColor">setPrioColor</a></li><li><a href="global.html#setRingColors">setRingColors</a></li><li><a href="global.html#showMenu">showMenu</a></li><li><a href="global.html#showTaskBig">showTaskBig</a></li><li><a href="global.html#spinnerOff">spinnerOff</a></li><li><a href="global.html#startDragging">startDragging</a></li><li><a href="global.html#timeout">timeout</a></li><li><a href="global.html#toggleAddContainer">toggleAddContainer</a></li><li><a href="global.html#toggleInviteContact">toggleInviteContact</a></li><li><a href="global.html#toggleSpinner">toggleSpinner</a></li><li><a href="global.html#updateHTML">updateHTML</a></li><li><a href="global.html#visiblePassword">visiblePassword</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Fri Dec 16 2022 01:42:27 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

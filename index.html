@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join</title>
+    <link rel="icon" type="image/png" href="./assets/img/icon.png">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/login_media_query.css">
+    <script src="./js/mini_backend.js"></script>
+    <script src="main.js"></script>
+    <script src="./js/login.js"></script>
+    <script src="./js/login_html_templates.js"></script>
+    <script src="./js/sign_up.js"></script>
+</head>
+
+<body onload="init()">
+    <div class="animated-background"></div>
+    
+    <div class="animated-icon">
+        <img class="icon-blue hide-mobile" src="./assets/img/icon.png">
+        <img class="icon-white hide" src="./assets/img/icon-white.png">
+    </div>
+
+    <div class="padding-box" id="content-sign-up">
+        <div class="header-container">
+            <span class="text-dark-blue">Not a Join user?</span>
+
+            <button class="btn bg-dark-blue text-white" onclick="openSignUp()">Sign up</button>
+        </div>
+
+        <div class="icon-container">
+            <img src="./assets/img/icon.png">
+        </div>
+
+        <div class="content-container">
+            <span class="headline">Log in</span>
+
+            <div class="line"></div>
+
+            <form class="form" onsubmit="login(); return false;">
+                <input class="input" placeholder="Email" required type="email" id="email-login"
+                    style="background-image: url(./assets/img/letter.png)">
+
+                <input class="input" placeholder="Password" required type="password" id="password-login"
+                    style="background-image: url(./assets/img/key.png)" onclick="changeBI()">
+
+                <span class="wrong d-none" id="wrong-password">Wrong password</span>
+
+                <div class="click-me d-none" id="click-me" onclick="visiblePassword()"></div>
+
+                <div class="click-me-two d-none" id="click-me-two" onclick="invisiblePassword()"></div>
+
+                <div class="settings-container">
+                    <div class="remember-me">
+                        <input type="checkbox" name="remember" id="checkbox" onclick="rememberMe()">
+
+                        <label for="remember">Remember me</label>
+
+                        <div class="uncheck-me d-none" id="uncheck" onclick="dontRememberMe()"></div>
+                    </div>
+
+                    <span onclick="openForgotPassword()">Forgot my password</span>
+                </div>
+
+                <div class="btn-container">
+                    <button class="btn-long-dark bg-dark-blue text-white">Log in</button>
+                    
+                    <button class="btn-long-bright bg-white text-dark-blue" onclick="guestLogin()">Guest Log in</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join</title>
+    <link rel="icon" type="image/png" href="./assets/img/icon.png">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/login_media_query.css">
+    <script src="./js/mini_backend.js"></script>
+    <script src="main.js"></script>
+    <script src="./js/login.js"></script>
+    <script src="./js/login_html_templates.js"></script>
+    <script src="./js/reset.js"></script>
+</head>
+
+<body onload="initReset()"> 
+    <div class="reset-success d-none" id="reset-success" onclick="closePopUpSuccess()">
+        <button class="btn-long-dark-success-reset bg-dark-blue text-white">You reset your password</button>
+    </div>
+
+    <div class="reset-success d-none" id="wrong-time" onclick="closePopUpTime()">
+        <button class="btn-long-dark-success-reset bg-dark-blue text-white">Get a new Link</button>
+    </div>
+
+    <div class="reset-success d-none" id="wrong-writing" onclick="closePopUpWriting()">
+        <button class="btn-long-dark-success-reset bg-dark-blue text-white">Writing is different</button>
+    </div>
+
+    <div class="reset-success d-none" id="wrong-mail" onclick="closePopUpMail()">
+        <button class="btn-long-dark-success-reset bg-dark-blue text-white">Mailadress not assignable</button>
+    </div>
+
+    <div class="padding-box" id="content-sign-up">
+        <div class="header-container"></div>
+
+        <div class="icon-container">
+            <img src="./assets/img/icon.png">
+        </div>
+        
+        <div class="content-container width-password margin-65">
+            <div class="return-arrow">
+                <img src="./assets/img/arrow.png" onclick="openForgotPassword()">
+            </div>
+
+            <span class="headline less-margin headline-mobile">Reset your password</span>
+
+            <div class="line"></div>
+
+            <span class="instructions">Change your account password</span>
+
+            <form class="form" onsubmit="checkTime(); return false;">
+                <input class="input" type="password" placeholder="New password" required  id="new-password">
+                
+                <input class="input" type="password" placeholder="Confirm password" required  id="confirm-password">
+            
+                <div class="btn-container width margin-top-button">
+                    <button class="btn-long-dark bg-dark-blue text-white width-btn">Continue</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

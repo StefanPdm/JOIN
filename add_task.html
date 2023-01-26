@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Join</title>
+   <link rel="icon" type="image/png" href="./assets/img/icon.png">
+   <link rel="stylesheet" href="main.css">
+   <link rel="stylesheet" href="./css/add_Task.css">
+   <link rel="stylesheet" href="./css/navbar-header.css">
+   <link rel="stylesheet" href="./css/responsiv.css">
+   <link rel="stylesheet" href="./css/add_Task_media_query.css">
+   <script src="main.js"></script>
+   <script src="./js/mini_backend.js"></script>
+   <script src="./js/add_task.js"></script>
+   <script src="./js/board.js"></script>
+
+</head>
+
+<body onload="initAddTask()">
+   <div class="maincontainer">
+
+      <header>
+         <div w3-include-html="./assets/templates/header.html"></div>
+      </header>
+
+      <nav>
+         <div w3-include-html="./assets/templates/side_menu.html"></div>
+      </nav>
+
+      <!-- Start Content -->
+      <div class="add-task-main">
+         <div class="add-task-headline">
+            <span class="kpmt hide-text" id="kpmt">Kanban Project Management Tool</span>
+            <span class="headline">Add Task</span>
+         </div>
+
+         <!-- <form onsubmit="formValidation(); return false" onkeydown="return event.key != 'Enter';"> -->
+
+
+
+         <div class="form-container">
+
+            <!-- left Side -->
+            <div>
+               <div class=" add-form">
+                  <label for="titel">Title<div class="required-message d-none"
+                        id="required-titel-1">(This
+                        field is
+                        required!)</div></label>
+                  <input required oninvalid="requiredText('1')" type="text"
+                     placeholder="Enter a title" id="add-title" name="titel">
+               </div>
+
+               <div class="add-form description">
+                  <label for="description">Descriptions<div class="required-message d-none"
+                        id="required-titel-2">
+                        (This field is
+                        required!)</div></label>
+                  <textarea required onfocus="clearContent()" oninvalid="requiredText('2')" rows="3"
+                     id="add-description" name="description"
+                     placeholder="Enter a Description"></textarea>
+               </div>
+               <!--------------------------------------- Category  ------------------------------------------ -->
+               <div class="add-form">
+                  <div class="category-container text-21-400-black">
+                     <label class="category-label">Category<div class="required-message d-none"
+                           id="required-titel-3">(This field
+                           is required!)</div></label>
+
+                     <div class="categories" id="categories">
+                        <div onclick="pullDownMenu('categories', 'assign')">
+                           <div class="category-line" id="selected-category">Select task
+                              Category</div>
+                           <img src="./assets/img/add_task/pull-down-arrow.png" alt="">
+                        </div>
+
+                        <div class="category-line" onclick="newCategory()">New Category</div>
+                        <div class="category-line" onclick="selectCategory('Sales')">
+                           <div>Sales</div>
+                           <div class="ring purple"></div>
+                        </div>
+                        <div class="category-line" onclick="selectCategory('Backoffice')">
+                           <div>Backoffice</div>
+                           <div class="ring green"></div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Category color Picker -->
+                  <div id="color-picker" class="color-picker-container d-none">
+                     <div id="col-1" class="ring c1 active-ring"
+                        onclick="setNewCategoryColor('#add8e6', this.id)">
+                     </div>
+                     <div id="col-2" class="ring c2"
+                        onclick="setNewCategoryColor('#ff0000', this.id)">
+                     </div>
+                     <div id="col-3" class="ring c3"
+                        onclick="setNewCategoryColor('#7fffd4', this.id)">
+                     </div>
+                     <div id="col-4" class="ring c4"
+                        onclick="setNewCategoryColor('#ffa500', this.id)">
+                     </div>
+                     <div id="col-5" class="ring c5"
+                        onclick="setNewCategoryColor('#a52a2a', this.id)">
+                     </div>
+                     <div id="col-6" class="ring c6"
+                        onclick="setNewCategoryColor('#00008b', this.id)">
+                     </div>
+                  </div>
+               </div>
+               <!-------------------------- Assigned to ------------------------------------------------------------------------------------>
+               <div class="add-form">
+                  <div class="category-container text-21-400-black">
+                     <label class="category-label">Assigned to<div class="required-message d-none"
+                           id="required-titel-4">(This field
+                           is
+                           required!)</div>
+                     </label>
+
+                     <div class="assigned-list-container" id="assign">
+
+                        <div class="assign-line" onclick="pullDownMenu('assign', 'categories')">
+                           <div>
+                              Select contacts to
+                              assign
+                           </div>
+                           <div>
+                              <img src="./assets/img/add_task/pull-down-arrow.png" alt="">
+                           </div>
+                        </div>
+
+                        <div class="assigned-list" id="assigned-list"></div>
+
+                     </div>
+                     <form
+                        action="https://gruppe-376.developerakademie.net/Join/send_invitation_mail.php"
+                        method="post">
+
+                        <div class="invite-contact d-none" id="invite-contact">
+                           <!-- Eingabe der mail -->
+                           <input type="email" id="invite-mail" name="invite-mail"
+                              placeholder="Contact email" required>
+                           <!-- Button rechts der Eingabe -->
+                           <div class="invite-button">
+                              <div onclick="discardInvitation()"><img
+                                    src="./assets/img/add_task/x-img.png" alt="">
+                              </div>
+                              <div class="smallLine"></div>
+                              <button type="submit" onclick="">
+                                 <img src="./assets/img/add_task/check-black.png" alt="">
+                              </button>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+
+
+
+            <div class="add-line-vertical"></div>
+
+            <!------------------------ right side Add Task ------------------------------------------------------>
+            <div>
+               <div class="add-form">
+                  <label for="titel">Due Date<div class="required-message d-none"
+                        id="required-titel-5">
+                        (This field
+                        is required!)</div>
+                     <div class="required-message d-none" id="required-titel-7">(Please choose a
+                        later date!)</div>
+                  </label>
+                  <input oninvalid="requiredText('5')" class="add-date" required type="date"
+                     value="dd/mm/yyyy" id="add-date" name="titel">
+
+                  <!-- <div class="required-message d-none" id="required-titel-5">This field is
+                        required.</div> -->
+               </div>
+
+               <div class="add-form ">
+                  <label>Prio<div class="required-message d-none" id="required-titel-6">(This
+                        field is required!)</div>
+                  </label>
+                  <div class="prio-container text-21-black">
+                     <div class="prio" id="prio-3" onclick="setPrio(3)">
+                        <div>Urgent</div>
+                        <img src="./assets/img/add_task/urgent-arrow.svg" alt="">
+                     </div>
+                     <div class="prio" id="prio-2" onclick="setPrio(2)">
+                        <div>Medium</div>
+                        <img src="./assets/img/add_task/medium_equal.svg" alt="">
+                     </div>
+                     <div class="prio" id="prio-1" onclick="setPrio(1)">
+                        <div>Low</div>
+                        <img src="./assets/img/add_task/low-arrow.svg" alt="">
+                     </div>
+                  </div>
+
+               </div>
+
+               <div class="add-form">
+                  <label for="category">Subtasks</label>
+                  <div class="addNewSubtask" id="addNewSubtask">
+                     <div class="subButton">
+                        <button type="button" onclick="addNewSubtask()">Add new subtask</button>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="subtasks" id="subtask-container">
+                  <div><input type="checkbox" id="subtask-1"><span>Inform Customer Support</span>
+                  </div>
+                  <div><input type="checkbox" id="subtask-2"><span>Send marketing paper</span>
+                  </div>
+               </div>
+
+               <div class="button-container">
+                  <button type="button"
+                     onclick="clearForm()"><span>Clear</span><span>X</span></button>
+                  <button type="" onclick="formValidation()">Create Task<img
+                        src="./assets/img/add_task/check.png" alt=""></button>
+               </div>
+            </div>
+         </div>
+         <!-- Added to Board message -->
+         <div class="taskAddedMessage" id="taskAddedMessage">
+            <div>Task added to board</div>
+            <div><img src="./assets/img/navbar/icon-board.svg" alt=""></div>
+         </div>
+      </div>
+   </div>
+</body>
+
+</html>

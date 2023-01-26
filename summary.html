@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Join</title>
+   <link rel="icon" type="image/png" href="./assets/img/icon.png">
+   <link rel="stylesheet" href="main.css">
+   <link rel="stylesheet" href="./css/summary.css">
+   <link rel="stylesheet" href="./css/navbar-header.css">
+   <link rel="stylesheet" href="./css/responsiv.css">
+   <script src="main.js"></script>
+   <script src="./js/mini_backend.js"></script>
+   <script src="./js/summary.js"></script>
+</head>
+
+<body onload="initSummary();">
+
+   <div class="maincontainer">
+
+      <header>
+         <div w3-include-html="./assets/templates/header.html"></div>
+      </header>
+
+      <nav>
+         <div w3-include-html="./assets/templates/side_menu.html"></div>
+      </nav>
+      <script>
+
+      </script>
+      <div class="summary-main">
+         <div class="summary-headline">
+            <span class="kpmt hide-text">Kanban Project Management Tool</span>
+            <span class="headline">Summary</span>
+            <div class="line-vertical"></div>
+            <span class="summary-span">Everything in a nutshell!</span>
+            <div class="line-horizontal"></div>
+         </div>
+         <div class="summary-content-container">
+            <div class="summary-content">
+
+               <div class="tasksOverview">
+                  <a class="card-1c" href="board.html">
+                     <div class="text-64-600-black" id="taskAllAmount">#</div>
+                     <div class="text-21-black">Tasks in Board</div>
+                  </a>
+                  <a class="card-1c" href="board.html">
+                     <div class="text-64-600-black" id="taskProgress">#</div>
+                     <div class="text-21-black">Tasks in Progress</div>
+                  </a>
+                  <a class="card-1c" href="board.html">
+                     <div class="text-64-600-black" id="taskAwaiting">#</div>
+                     <div class="text-21-black">Awaiting Feedback</div>
+                  </a>
+               </div>
+
+               <div class="taskUrgent">
+                  <a class="card-3c" href="board.html">
+                     <div class="urgent-symbol"><img src="./assets/img/summary/urgent-arrow-red.svg"
+                           alt=""></div>
+                     <div class="urgent-number">
+                        <div class="text-47-600-black" id="taskUrgent">#</div>
+                        <div class="text-16-400-black">Urgent</div>
+                     </div>
+                     <div class="deadline-container" href="board.html">
+                        <div class="text-21-700-black" id="upcomingDeadline">Januar 1, 1970</div>
+                        <div class="text-16-400-black">Upcoming Deadline</div>
+                     </div>
+                  </a>
+               </div>
+
+               <div class="taskSummary">
+                  <a class="card-2c" href="board.html">
+                     <img src="./assets/img/summary/pen.svg" alt="">
+                     <div class="todo-number">
+                        <div class="text-64-600-black" id="taskTodo">#</div>
+                        <div class="text-21-400-black">To-do</div>
+                     </div>
+                  </a>
+                  <a class="card-2c" href="board.html">
+                     <img src="./assets/img/summary/pen.svg" alt="">
+                     <div class="todo-number">
+                        <div class="text-64-600-black" id="taskDone">#</div>
+                        <div class="text-21-400-black">Done</div>
+                     </div>
+                  </a>
+               </div>
+            </div>
+
+            <div class="welcome hide-welcome">
+               <span class="welcome-time" id="welcomeTime">Good ###, </span><br>
+               <span class="welcome-name" id="welcomeName">### ###</span>
+            </div>
+
+
+
+         </div>
+      </div>
+      <div class="welcome-animation hide-welcome-animation">
+         <span class="welcome-time" id="welcomeTime-responsiv"></span><br>
+         <span class="welcome-name" id="welcomeName-responsiv"></span>
+      </div>
+   </div>
+
+
+</body>
+
+</html>

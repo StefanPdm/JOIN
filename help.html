@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Join</title>
+   <link rel="icon" type="image/png" href="./assets/img/icon.png">
+   <link rel="stylesheet" href="main.css">
+   <link rel="stylesheet" href="./css/navbar-header.css">
+   <link rel="stylesheet" href="./css/legal_notice_help.css">
+   <link rel="stylesheet" href="./css/responsiv.css">
+   <script src="main.js"></script>
+   <script src="./js/legal_notice_help.js"></script>
+</head>
+
+<body onload="initLegalHelp()">
+   <div class="maincontainer">
+      <header>
+         <div w3-include-html="./assets/templates/header_help.html"></div>
+      </header>
+
+      <nav>
+         <div w3-include-html="./assets/templates/side_menu.html"></div>
+      </nav>
+
+      <div class="content-lg">
+         <div class="arrow-container">
+            <img src="./assets/img/arrow-dark.png" onclick="backToSummary()">
+         </div>
+
+         <span class="kpmt hide-text">Kanban Project Management Tool</span>
+
+         <h1>Help</h1>
+
+         <h2>What is Join?</h2>
+
+         <p>Join is a Kanban Project Management Tool. You and your team create tasks with the kanban
+            board method. The stages of the work progress are visualized by the various columns of
+            the board. Every task moves from the left to the right until it's done.
+         </p>
+
+         <h2>How to use it</h2>
+
+         <table>
+            <tr>
+               <td>1.</td>
+               <td>Get ready to work <br> Sign in and get an account. Or use the guest account to
+                  look how the tool works.</td>
+            </tr>
+
+            <tr>
+               <td>2.</td>
+               <td>Create the work environment <br> Add a task and watch it's work progress on the
+                  board. An urgent task is still open? The summary will give you the perfect
+                  overview!</td>
+            </tr>
+
+            <tr>
+               <td>3.</td>
+               <td>Manage the progress <br> The Tasks can always be edited and adapted to the work
+                  progress. Stay updated and communicate with your team members.</td>
+            </tr>
+         </table>
+      </div>
+   </div>
+</body>
+</html>

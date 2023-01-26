@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join</title>
+    <link rel="icon" type="image/png" href="./assets/img/icon.png">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/login_media_query.css">
+    <script src="./js/login.js"></script>
+</head>
+
+<body>
+    <div class="fmp-success">
+        <button class="btn-long-dark-success bg-dark-blue text-white"> <img src="./assets/img/send.png"> An E-Mail has been sent to you</button>
+    </div>
+
+    <div class="padding-box" id="content-sign-up">
+        <div class="header-container"></div>
+
+        <div class="icon-container">
+            <img src="./assets/img/icon.png">
+        </div>
+        
+        <div class="content-container width-password margin-65">
+            <div class="return-arrow">
+                <img src="./assets/img/arrow.png" onclick="openLogIn()">
+            </div>
+
+            <span class="headline less-margin">I forgot my password</span>
+
+            <div class="line"></div>
+
+            <span class="instructions">Don't worry! We will send you an email with the instructions to reset your password.</span>
+            
+            <form class="form">
+                <input class="input" placeholder="Email" name="email" required type="email" id="email" style="background-image: url(./assets/img/letter.png)">
+            
+                <div class="btn-container width">
+                    <button class="btn-long-dark bg-dark-blue text-white width-btn">Send me the email</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

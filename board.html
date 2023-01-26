@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Join</title>
+   <link rel="icon" type="image/png" href="./assets/img/icon.png">
+   <link rel="stylesheet" href="main.css">
+   <link rel="stylesheet" href="./css/board.css">
+   <link rel="stylesheet" href="./css/navbar-header.css">
+   <link rel="stylesheet" href="./css/spinner.css">
+   <link rel="stylesheet" href="./css/add_Task.css">
+   <link rel="stylesheet" href="./css/responsiv.css">
+   <script src="main.js"></script>
+   <script src="./js/mini_backend.js"></script>
+   <script src="./js/board.js"></script>
+   <script src="./js/add_task.js"></script>
+</head>
+
+<body onload="initBoard()">
+   <div class="overflowHidden">
+      <!-- Loading Spinner -->
+      <div id="loader" class="loader d-none">
+         <div class="loader-item"></div>
+         <div class="loader-item"></div>
+         <div class="loader-item"></div>
+      </div>
+
+      <!-- Start HTML include -->
+
+      <!-- Begin of Add_Task_Container -->
+      <div id="add-task-container" class="add-task-container hide-task-container"
+         w3-include-html="./assets/templates/add_task_container.html">
+      </div>
+      <!-- End of Add_Task_Container -->
+
+      <div class="maincontainer-board">
+         <header>
+            <div w3-include-html="./assets/templates/header.html"></div>
+         </header>
+         <nav>
+            <div w3-include-html="./assets/templates/side_menu.html"></div>
+         </nav>
+
+
+
+
+         <!-- Start Content -->
+         <div class="board-main">
+            <div class="board-headline">
+               <span class="kpmt hide-text">Kanban Project Management Tool</span>
+               <span class="headline">Board</span>
+               <div>
+                  <div class="search-container">
+                     <input type="text" placeholder="Find by title or description.."
+                        id="search-input" onkeyup="filterTasks()">
+                     <div></div>
+                     <img src="./assets/img/board/search.png" alt="">
+                  </div>
+                  <div onclick="toggleAddContainer()">
+                     <button type="button" class="text-21-700-black">Add task &nbsp;+</button>
+                  </div>
+                  <div onclick="directToAddTask()">
+                     <button id="btn-board-responsive" type="button"
+                        class="text-21-700-black d-none"><img
+                           src="./assets//img/board/plus button white.png" alt=""></button>
+                  </div>
+
+               </div>
+            </div>
+            <div class="task-main-container">
+               <!-- to do -->
+
+               <div class="task-sub-container todo">
+                  <div class="text-21-700-black container-headline">
+                     <span>To do</span>
+                     <div>
+                        <div class="cursor-pointer hide-in-responsive">
+                           <img src="./assets/img/board/plus button v1.png" alt=""
+                              onclick="toggleAddContainer()">
+                        </div>
+
+                        <div class="cursor-pointer just-responsive">
+                           <img src="./assets/img/board/plus button v1.png" alt=""
+                              onclick="directToAddTask()">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card-container" id="todo" ondrop="moveTo('todo')"
+                     ondragover="allowDrop(event); highlight('todo')"
+                     ondragleave="removeHighlight('todo')"></div>
+               </div>
+
+               <!------------------------------ in progress -->
+               <div class="task-sub-container progress">
+                  <div class="text-21-700-black container-headline">
+                     <span>Progress</span>
+                     <div>
+                        <div class="cursor-pointer hide-in-responsive">
+                           <img src="./assets/img/board/plus button v1.png" alt=""
+                              onclick="toggleAddContainer()">
+                        </div>
+
+                        <div class="cursor-pointer just-responsive">
+                           <img src="./assets/img/board/plus button v1.png" alt=""
+                              onclick="directToAddTask()">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card-container" id="progress" ondrop="moveTo('progress')"
+                     ondragover="allowDrop(event); highlight('progress')"
+                     ondragleave="removeHighlight('progress')">
+                  </div>
+               </div>
+
+               <!---------------------------------------- await -->
+               <div class="task-sub-container await">
+                  <div class="text-21-700-black container-headline">
+                     <span>Awaiting Feedback</span>
+                     <div>
+                        <div class="cursor-pointer hide-in-responsive">
+                           <img src="./assets/img/board/plus button v1.png" alt=""
+                              onclick="toggleAddContainer()">
+                        </div>
+
+                        <div class="cursor-pointer just-responsive">
+                           <img src="./assets/img/board/plus button v1.png" alt=""
+                              onclick="directToAddTask()">
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="card-container" id="await" ondrop="moveTo('await')"
+                     ondragover="allowDrop(event); highlight('await')"
+                     ondragleave="removeHighlight('await')">
+                  </div>
+               </div>
+
+               <!-------------------------------------------- done -->
+               <div class="task-sub-container done">
+                  <div class="text-21-700-black container-headline">
+                     <span>Done</span>
+                     <div>
+                        <div class="cursor-pointer hide-in-responsive">
+                           <img src="./assets/img/board/plus button v1.png" alt=""
+                              onclick="toggleAddContainer()">
+                        </div>
+
+                        <div class="cursor-pointer just-responsive">
+                           <img src="./assets/img/board/plus button v1.png" alt=""
+                              onclick="directToAddTask()">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card-container" id="done" ondrop="moveTo('done')"
+                     ondragover="allowDrop(event); highlight('done')"
+                     ondragleave="removeHighlight('done')">
+                  </div>
+               </div>
+
+
+
+            </div>
+            <!-- Start Show big Cards -------------------------------------->
+            <div class="show-task d-none" id="show-task">
+               <div class="show-task-category" id="show-category">Category</div>
+               <div class="show-task-title" id="show-title">Title</div>
+               <div class="show-task-description" id="show-description">Description Lorem ipsum
+                  dolor
+                  sit amet
+                  consectetur adipisicing elit.</div>
+
+               <div class="show-task-date">
+                  <div class="show-bold">Due date:</div>
+                  <div id="show-date">00-00-2022</div>
+               </div>
+               <div class="show-task-priority display-flex">
+                  <span class="show-bold">Priority:</span>
+                  <div id="show-priority" class="show-priority"># Urgent #</div>
+               </div>
+
+               <div class="show-assigned-subtask">
+                  <div class="show-task-assign">
+                     <div class="show-bold" style="margin-bottom: 25px;">Assigned to:</div>
+                     <div id="show-assigned"></div>
+                  </div>
+
+                  <div class="show-task-subtask d-none" id="show-subtask-container">
+                     <div class="show-bold" style="margin-bottom: 25px;">Subtasks:</div>
+                     <div class="show-subtask-list" id="show-subtask-list"></div>
+                  </div>
+               </div>
+
+               <!-- Buttons -->
+               <div class="button-close" onclick="closeCard('show-task')">
+                  <img src="./assets/img/board/close-x.png" alt="">
+               </div>
+               <div class="button-edit" onclick="openEditCard()"></div>
+            </div>
+
+            <!-- Start edit card ------------------------------------------------>
+            <div class="edit-card d-none text-21-400-black" id="edit-card">
+               <div class="edit-title">
+                  <div class="edit-headline">
+                     <div> Title</div>
+                     <div class="required-message d-none" id="required-titel-8">This field is
+                        required.</div>
+                  </div>
+                  <input type="text" id="edit-title" placeholder="####">
+               </div>
+
+               <div class="edit-description">
+                  <span class="edit-headline">Description<div class="required-message d-none"
+                        id="required-titel-9">This field is
+                        required.</div></span>
+                  <textarea id="edit-description" rows="3">############# ####</textarea>
+               </div>
+
+               <div class="edit-due-date">
+                  <span class="edit-headline">Due date<div class="required-message d-none"
+                        id="required-titel-10">Choose date later.</div></span>
+                  <input type="date" name="" id="edit-date">
+               </div>
+
+               <div class="edit-prio">
+                  <span class="edit-headline">Prio</span>
+                  <div class="edit-prio-container">
+                     <div class="edit-prio-button" id="edit-prio-3" onclick="editSetNewPrio(3)">
+                        <div>Urgent</div>
+                        <div><img id="edit-prio-3-img" src="./assets/img/board/arrows-up-red.png"
+                              alt=""></div>
+                     </div>
+                     <div class="edit-prio-button" id="edit-prio-2" onclick="editSetNewPrio(2)">
+                        <div>Medium</div>
+                        <div><img id="edit-prio-2-img"
+                              src="./assets/img/board/equal-sign-orange.png" alt=""></div>
+                     </div>
+                     <div class="edit-prio-button" id="edit-prio-1" onclick="editSetNewPrio(1)">
+                        <div>Low</div>
+                        <div><img id="edit-prio-1-img"
+                              src="./assets/img/board/arrows-down-green.png" alt=""></div>
+                     </div>
+                  </div>
+               </div>
+               <div class="edit-assigned">
+                  <span class="edit-headline">Assigned to<div class="required-message d-none"
+                        id="required-titel-11">This field is
+                        required.</div></span>
+                  <div class="edit-assigned-select-container" id="edit-assigned-container">
+                     <div class="edit-assignes-select-button" onclick="pullDown()">
+                        <div>Select contacts to assign</div>
+                        <div><img id="pullDownArrow" src="./assets/img/board/pulldown-arrow.png"
+                              alt=""></div>
+                     </div>
+                     <div class="edit-allUsers" id="edit-allUsers"></div>
+                  </div>
+
+               </div>
+               <div class="edit-ring-container" id="edit-ring-container">
+                  <div class="edit-ring">#</div>
+               </div>
+
+               <!-- Buttons edit Card-->
+               <div class="button-close" onclick="closeCard('edit-card')">
+                  <img src="./assets/img/board/close-x.png" alt="">
+               </div>
+               <div class="button-save" onclick="saveEditTask()">
+                  <div>OK</div>
+                  <img src="./assets/img/board/check-hook-white.png" alt="">
+               </div>
+            </div>
+         </div>
+
+      </div>
+
+   </div>
+</body>
+
+</html>

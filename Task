@@ -1,0 +1,17 @@
+
+D:\IT Learning\Developer Akademie\šbungen\Modul 10\Join>git pull 
+Already up to date.
+
+D:\IT Learning\Developer Akademie\šbungen\Modul 10\Join>git add . 
+
+D:\IT Learning\Developer Akademie\šbungen\Modul 10\Join>git commit -m "start programming Board Edit" 
+[main a711d10] start programming Board Edit
+ 9 files changed, 255 insertions(+), 5 deletions(-)
+ create mode 100644 Task
+ create mode 100644 assets/img/board/arrows-down-green.png
+ create mode 100644 assets/img/board/arrows-up-red.png
+ create mode 100644 assets/img/board/check-hook-white.png
+ create mode 100644 assets/img/board/equal-sign-orange.png
+ create mode 100644 assets/img/board/pulldown-arrow.png
+
+D:\IT Learning\Developer Akademie\šbungen\Modul 10\Join>git push 
