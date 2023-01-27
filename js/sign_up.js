@@ -1,4 +1,4 @@
-setURL('https://gruppe-376.developerakademie.net/smallest_backend_ever');
+setURL('https://stefan-heinemann.developerakademie.net/smallest_backend_ever');
 
 async function init() {
     await downloadFromServer();

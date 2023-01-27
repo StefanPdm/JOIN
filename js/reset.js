@@ -1,4 +1,4 @@
-setURL('https://gruppe-376.developerakademie.net/smallest_backend_ever');
+setURL('https://stefan-heinemann.developerakademie.net/smallest_backend_ever');
 
 let currentUrl = new URL(window.location.href); //bindet URL der aktuellen Seite an Variable
 let email = currentUrl.searchParams.get("email"); // liest Parameter email aus URL heraus
@@ -20,7 +20,7 @@ async function initReset() {
  * checks if password-reset-link is younger than 24h
  */
 function checkTime() {
-    if(time < 1440) {
+    if (time < 1440) {
         checkMail(); //if yes, checkMail function starts
     } else {
         openPopUpTime(); // if no, message "get a new link" pops up and redirecting to index.html
@@ -33,7 +33,7 @@ function checkTime() {
  */
 function checkMail() {
     let sameMail = users.find(u => u.email == email);
-    if(sameMail) {
+    if (sameMail) {
         replacePassword(sameMail); //if yes, replacePassword function starts
     } else {
         openPopUpMail(); // if no, message "Mailadress not assignable" pops up and redirecting to index.html
@@ -47,8 +47,8 @@ function checkMail() {
 async function replacePassword(sameMail) {
     let newPassword = document.getElementById('new-password').value;
     let confirmedPassword = document.getElementById('confirm-password').value;
-    if(newPassword === confirmedPassword) {
-       sameMail.password = confirmedPassword;
+    if (newPassword === confirmedPassword) {
+        sameMail.password = confirmedPassword;
         openPopUpSuccess(); //if yes, message "you reset your password" pops up
     } else {
         openPopUpWriting();//if no, message "writing is different" pops up

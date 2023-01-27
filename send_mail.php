@@ -29,7 +29,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
         $subject = "Contact From Join";
         $headers = "From:  joinpasssword@web.de";
-        $message = "Hallo, hier kannst du dein Passwort resetten: https://gruppe-376.developerakademie.net/Join/reset.html?email=$recipient&timestamp=$time";
+        $message = "Hallo, hier kannst du dein Passwort resetten: https://stefan-heinemann.developerakademie.net/Join/reset.html?email=$recipient&timestamp=$time";
 
         mail($recipient, $subject, $message, $headers);
         header("Location: " . $redirect); 

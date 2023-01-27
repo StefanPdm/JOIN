@@ -1,4 +1,4 @@
-setURL('https://gruppe-376.developerakademie.net/smallest_backend_ever');
+setURL('https://stefan-heinemann.developerakademie.net/smallest_backend_ever');
 
 let ringColorsOfUser = [];
 let currentElement;
@@ -560,7 +560,6 @@ function renderEditPrio(element) {
    setPrioColor(prio);
 }
 
-
 /**
  * set prio color
  * @param {*} prio 
@@ -584,7 +583,6 @@ function setPrioColor(prio) {
    if (prio == 3) {
       document.getElementById('edit-prio-3').style = "background-color:#FF3D00; color:white";
       document.getElementById('edit-prio-3-img').src = "./assets/img/board/arrows-up-white.png";
-
    }
 }
 
@@ -664,7 +662,6 @@ function checkEditAssigned() {
    }
    return team
 }
-
 
 let searchTitle;
 let searchDescription;

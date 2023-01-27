@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join</title>
+  <link rel="icon" type="image/png" href="./assets/img/icon.png">
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="./css/contacts.css">
+  <link rel="stylesheet" href="./css/navbar-header.css">
+  <link rel="stylesheet" href="./css/responsiv.css">
+  <!-- <link rel="stylesheet" href="./css/add_Task_media_query.css"> -->
+  <script src="main.js"></script>
+  <script src="./js/mini_backend.js"></script>
+  <script src="./js/contacts.js"></script>
+  <script src="./js/board.js"></script>
+
+</head>
+
+<body onload="initContacts()">
+  <div class="maincontainer">
+
+    <header>
+      <div w3-include-html="./assets/templates/header.html"></div>
+    </header>
+
+    <nav>
+      <div w3-include-html="./assets/templates/side_menu.html"></div>
+    </nav>
+
+    <!-- Start Content -->
+
+    <div class="contacts-main-container">
+      <!-- left side -->
+      <div class="contacts-list-container">
+        <div class="contacts-list">
+
+          <div class="contact-list-capital-container">
+            <div class="contacts-list-capital text-21-400-black">A</div>
+            <div class="horizantal-line"></div>
+          </div>
+
+          <div class="contacts-list-item" onclick="openContact()" id="user-1">
+            <div class="letter-ring-small">AM</div>
+            <div class="contacts-item-container">
+              <div class="contacts-item-name">Anton Mayer</div>
+              <div class="contacts-item-email">sdfds@fsdfds.de</div>
+            </div>
+          </div>
+
+          <div class="contacts-list-item">
+            <div class="letter-ring-small">AS</div>
+            <div class="contacts-item-container">
+              <div class="contacts-item-name">Anja Schulz</div>
+              <div class="contacts-item-email">sdfds@fsdfds.de</div>
+            </div>
+          </div>
+          <div class="contacts-list-item">
+            <div class="letter-ring-small">AS</div>
+            <div class="contacts-item-container">
+              <div class="contacts-item-name">Anja Schulz</div>
+              <div class="contacts-item-email">sdfds@fsdfds.de</div>
+            </div>
+          </div>
+          <div class="contacts-list-item">
+            <div class="letter-ring-small">AS</div>
+            <div class="contacts-item-container">
+              <div class="contacts-item-name">Anja Schulz</div>
+              <div class="contacts-item-email">sdfds@fsdfds.de</div>
+            </div>
+          </div>
+          <div class="contacts-list-item">
+            <div class="letter-ring-small">AS</div>
+            <div class="contacts-item-container">
+              <div class="contacts-item-name">Anja Schulz</div>
+              <div class="contacts-item-email">sdfds@fsdfds.de</div>
+            </div>
+          </div>
+
+          <div class="contact-list-capital-container">
+            <div class="contacts-list-capital">B</div>
+            <div class="horizantal-line"></div>
+          </div>
+
+          <div class="contacts-list-item">
+            <div class="letter-ring-small">BZ</div>
+            <div class="contacts-item-container">
+              <div class="contacts-item-name">Benedikt Ziegler</div>
+              <div class="contacts-item-email">sdfds@fsdfds.de</div>
+            </div>
+          </div>
+          <div class="contacts-list-item">
+            <div class="letter-ring-small">BZ</div>
+            <div class="contacts-item-container">
+              <div class="contacts-item-name">Benedikt Ziegler</div>
+              <div class="contacts-item-email">sdfds@fsdfds.de</div>
+            </div>
+          </div>
+          <div class="contacts-list-item">
+            <div class="letter-ring-small">BZ</div>
+            <div class="contacts-item-container">
+              <div class="contacts-item-name">Benedikt Ziegler</div>
+              <div class="contacts-item-email">sdfds@fsdfds.de</div>
+            </div>
+          </div>
+          <div class="contacts-list-item">
+            <div class="letter-ring-small">BZ</div>
+            <div class="contacts-item-container">
+              <div class="contacts-item-name">Benedikt Ziegler</div>
+              <div class="contacts-item-email">sdfds@fsdfds.de</div>
+            </div>
+          </div>
+
+          <div class="contact-list-capital-container">
+            <div class="contacts-list-capital">D</div>
+            <div class="horizantal-line"></div>
+          </div>
+          <div class="contacts-list-item">
+            <div class="letter-ring-small">DE</div>
+            <div class="contacts-item-container">
+              <div class="contacts-item-name">David Eisenberg</div>
+              <div class="contacts-item-email">sdfds@fsdfds.de</div>
+            </div>
+          </div>
+          <div class="contacts-list-item">
+            <div class="letter-ring-small">DE</div>
+            <div class="contacts-item-container">
+              <div class="contacts-item-name">David Eisenberg</div>
+              <div class="contacts-item-email">sdfds@fsdfds.de</div>
+            </div>
+          </div>
+          <div class="contacts-list-item">
+            <div class="letter-ring-small">DE</div>
+            <div class="contacts-item-container">
+              <div class="contacts-item-name">David Eisenberg</div>
+              <div class="contacts-item-email">sdfds@fsdfds.de</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- right Side -->
+      <div class="contacts-show-main-container ">
+        <div class="contacts-headline-container">
+          <div class="headline">Contacts</div>
+          <div class="vertical-line"></div>
+          <div class="sub-headline">Better with a team</div>
+        </div>
+        <div class="contacts-show-detail-container">
+          <div class="contact-detail-headline">
+            <div class="letter-ring-big">AM</div>
+            <div class="detail-name-container">
+              <div class="detail-name">Anton Meyer</div>
+              <div class="add-task">+ Add Task</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</body>
+
+</html>

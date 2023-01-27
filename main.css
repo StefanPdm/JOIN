@@ -216,6 +216,11 @@ body {
   font-weight: 700;
 }
 
+.sub-headline {
+  font-size: 27px;
+  font-weight: 400;
+}
+
 
 .bg-dark-blue {
   background-color: #2A3647;

@@ -8,7 +8,7 @@ let deadlineDate = 0;
 let welcomeTime = "Good Yesterday,";
 
 
-setURL('https://gruppe-376.developerakademie.net/smallest_backend_ever');
+setURL('https://stefan-heinemann.developerakademie.net/smallest_backend_ever');
 
 /**
  * download data from server, set active menu button, get logged user 

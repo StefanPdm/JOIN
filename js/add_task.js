@@ -7,7 +7,7 @@ let subtaskID = 2;
 let dueDate;
 let taskID;
 
-setURL('https://gruppe-376.developerakademie.net/smallest_backend_ever');
+setURL('https://stefan-heinemann.developerakademie.net/smallest_backend_ever');
 
 /**
  * load data from Server,
