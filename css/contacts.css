@@ -40,7 +40,6 @@
   display: flex;
   flex-direction: column;
   margin: 10px;
-  /* border: 1px solid black; */
   align-items: center;
 }
 
@@ -58,7 +57,6 @@
 
 .contacts-list-item {
   display: flex;
-  /* flex-direction: column; */
   padding: 15px 25px;
   cursor: pointer;
   border-radius: 10px;
@@ -94,15 +92,11 @@
   gap: 5px;
 }
 
-
-
 .contacts-item-email {
-  color: #007cee;
+  color: var(--emailblue);
   font-size: 16px;
   font-weight: 400;
 }
-
-
 
 .active-user {
   background-color: var(--darkblue);
@@ -117,10 +111,9 @@
 /* right side */
 .contacts-show-main-container {
   display: flex;
+  position: relative;
   flex-direction: column;
   height: 100%;
-  /* background-color: bisque */
-  z-index: -1;
   padding-left: 58px;
   padding-top: 82px;
 }
@@ -141,7 +134,96 @@
 .contacts-show-detail-container {
   display: flex;
   flex-direction: column;
+  position: relative;
   margin-top: 82px;
-  background-color: azure;
   height: 100%;
+}
+
+.contact-detail-headline {
+  display: flex;
+  font-size: 47px;
+  font-weight: 500;
+  margin-bottom: 21px;
+}
+
+.letter-ring-big {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 1px solid white;
+  text-align: center;
+  line-height: 120px;
+  color: white;
+  background-color: orange;
+}
+
+.detail-name-container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 50px;
+  justify-content: center;
+}
+
+.text-16-400-blue {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--emailblue);
+}
+
+.contact-detail-edit-container {
+  display: flex;
+  width: 400px;
+  height: 74px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contact-edit-item-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.contact-edit-item-container:hover {
+  color: var(--emailblue);
+  fill: var(--emailblue);
+}
+
+.contact-edit-item-container:hover svg path {
+  fill: var(--emailblue);
+}
+
+.contacts-details-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 22px;
+  gap: 22px;
+}
+
+.contacts-detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contacts-show-main-container .button {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: space-between;
+  height: 53px;
+  width: 193px;
+  padding: 18px 10px;
+  right: 10px;
+  bottom: 100px;
+  background-color: var(--darkblue);
+  color: white;
+  border-radius: 10px;
+}
+
+@media (width < 1370px) {
+  .contacts-main-container {
+    padding-left: 0px;
+  }
 }
