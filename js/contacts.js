@@ -40,6 +40,9 @@ async function includeHTML() {
   }
 }
 
+/**
+ * get active user
+ */
 function getLoggedUser() {
   currentUser = JSON.parse(localStorage.getItem('logged User') || '9999');
   if (currentUser == '9999') {
@@ -49,12 +52,18 @@ function getLoggedUser() {
   }
 }
 
+/**
+ * open active contact from contact list
+ */
 function openContact(id) {
   renderContactList();
   document.getElementById(id).classList.add('active-user');
   showContactDetails(id)
 }
 
+/**
+ * show contact details
+ */
 function showContactDetails(id) {
   let element = document.getElementById('contacts-show-detail-container');
   id = id * 1;
@@ -63,6 +72,9 @@ function showContactDetails(id) {
   renderContactDetails(element, userArrayIndex, initials);
 }
 
+/**
+ * render contact details
+ */
 function renderContactDetails(element, userArrayIndex, initials) {
   element.innerHTML = /*html*/ `<!-- content headline -->
           <div class="contact-detail-headline">
@@ -95,7 +107,12 @@ function renderContactDetails(element, userArrayIndex, initials) {
               <div>Phone</div>
               <div class="text-16-400-black">${allUsers[userArrayIndex].phone}</div>
             </div>
-          </div>`;
+          </div><!-- add button -->
+          <div class="button text-21-700-black">
+            <div>New contact</div>
+            <div><img src="./assets/img/contacts/new-contact.png" alt=""></div>
+          </div>
+          `;
 }
 
 function renderContactList() {
