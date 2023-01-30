@@ -2,6 +2,9 @@
 
 setURL('https://stefan-heinemann.developerakademie.net/smallest_backend_ever');
 let allUsers = [];
+let allUsersAlpha = [];
+let firstNameLetters = [];
+let ringColorList = [];
 
 /**
  * load data from Server,
@@ -15,6 +18,9 @@ async function initContacts() {
   await includeHTML();
   setNavActive('navContact');
   getLoggedUser();
+  setNameListAlpha();
+  setRingColorList();
+  renderContactList();
 }
 
 /**
@@ -43,8 +49,125 @@ function getLoggedUser() {
   }
 }
 
-function openContact() {
-  {
-    document.getElementById('user-1').classList.add('active-user')
+function openContact(id) {
+  renderContactList();
+  document.getElementById(id).classList.add('active-user');
+  showContactDetails(id)
+}
+
+function showContactDetails(id) {
+  let element = document.getElementById('contacts-show-detail-container');
+  id = id * 1;
+  let userArrayIndex = allUsers.findIndex(x => x.id === id);
+  let initials = getInitials(allUsers[userArrayIndex].name);
+  renderContactDetails(element, userArrayIndex, initials);
+}
+
+function renderContactDetails(element, userArrayIndex, initials) {
+  element.innerHTML = /*html*/ `<!-- content headline -->
+          <div class="contact-detail-headline">
+            <div style="background-color: ${allUsersAlpha[userArrayIndex].ringColor}" class="letter-ring-big">${initials}</div>
+            <div class="detail-name-container">
+              <div class="detail-name">${allUsers[userArrayIndex].name}</div>
+              <div class="add-task text-16-400-blue">+ Add Task</div>
+            </div>
+          </div>
+          <!-- edit container -->
+          <div class="contact-detail-edit-container" id="contact-detail-edit-container">
+            <div class="contact-detail-title text-21-400-black">Contact Information</div>
+            <div class="contact-edit-item-container">
+              <svg width="21" height="30" viewBox="0 0 21 30" fill="#2A3647">
+                <path d="M2.87121 22.0156L7.69054 24.9405L20.3337 4.10842
+                  C20.6203 3.63628 20.4698 3.02125 19.9977 2.73471L16.8881 0.847482
+                  C16.4159 0.56094 15.8009 0.711391 15.5144 1.18353L2.87121 22.0156Z" />
+                <path d="M2.28614 22.9794L7.10547 25.9043L2.37685 28.1892L2.28614 22.9794Z" />
+              </svg>
+              <div>Edit Contact</div>
+            </div>
+          </div>
+          <!-- detail information container -->
+          <div class="contacts-details-container text-16-700-black">
+            <div class="contacts-detail-item">
+              <div>Email</div>
+              <div class="text-16-400-blue">${allUsers[userArrayIndex].email}</div>
+            </div>
+            <div class="contacts-detail-item">
+              <div>Phone</div>
+              <div class="text-16-400-black">${allUsers[userArrayIndex].phone}</div>
+            </div>
+          </div>`;
+}
+
+function renderContactList() {
+
+  findFirstNameLetter();
+  includeListHTML();
+}
+
+function setNameListAlpha() {
+  allUsersAlpha = allUsers.sort((a, b) => a.name.localeCompare(b.name));
+}
+
+function findFirstNameLetter() {
+  for (let i in allUsersAlpha) {
+    const firstLetter = allUsersAlpha[i].name.charAt(0).toUpperCase();
+    if (!firstNameLetters.includes(firstLetter)) {
+      firstNameLetters.push(firstLetter);
+    }
+  }
+}
+
+function getInitials(fullname) {
+  return (getFirstLetter(fullname) + getSecondLetter(fullname));
+}
+
+function getFirstLetter(fullname) {
+  return fullname.charAt(0).toUpperCase();
+}
+
+function getSecondLetter(fullname) {
+  let nameArray = fullname.split(' ');
+  if (nameArray.length > 1) {
+    return nameArray[1].charAt(0).toUpperCase();
+  } else {
+    return '';
+  }
+}
+
+function includeListHTML() {
+  const container = document.getElementById('contact-list');
+  container.innerHTML = '';
+  for (let i in firstNameLetters) {
+    renderListLetter(container, i);
+    for (let j in allUsersAlpha) {
+      let firstL = allUsersAlpha[j].name.charAt(0).toUpperCase();
+      let secondL = getSecondLetter(allUsersAlpha[j].name);
+      if (firstL == firstNameLetters[i]) {
+        renderListItem(j, firstL, secondL, container);
+      }
+    }
+  }
+}
+
+function renderListLetter(container, i) {
+  container.innerHTML += /*html*/ `<div class="contact-list-capital-container">
+            <div class="contacts-list-capital text-21-400-black">${firstNameLetters[i]}</div>
+            <div class="horizantal-line"></div>
+          </div>`;
+}
+
+function renderListItem(j, firstL, secondL, container) {
+  container.innerHTML += /*html*/ `<div class="contacts-list-item" onclick="openContact(this.id)" id="${allUsersAlpha[j].id}">
+            <div style="background-color: ${allUsersAlpha[j].ringColor}" class="letter-ring-small">${firstL}${secondL}</div>
+            <div class="contacts-item-container">
+              <div class="contacts-item-name">${allUsersAlpha[j].name}</div>
+              <div class="contacts-item-email">${allUsersAlpha[j].email}</div>
+            </div>
+          </div>`;
+}
+
+function setRingColorList() {
+  for (const user of allUsersAlpha) {
+    user.ringColor = getRandomColor();
   }
 }
