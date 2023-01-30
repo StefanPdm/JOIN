@@ -48,18 +48,17 @@
         <!-- content -->
         <div class="contacts-show-detail-container" id="contacts-show-detail-container">
           <!-- add button -->
-          <div class="button text-21-700-black">
+          <div class="button text-21-700-black" onclick="toggleEditContainer()">
             <div>New contact</div>
             <div><img src="./assets/img/contacts/new-contact.png" alt=""></div>
           </div>
-
         </div>
       </div>
       <!--  add/edit contacts container-->
-      <div class="d-none contacts-add-edit-container">
+      <div class="contacts-add-edit-container" id="contacts-add-edit-container">
         <div class="contacts-add-edit-left">
           <div class="contacts-edit-logo"><svg width="56" height="66" viewBox="0 0 102 122"
-              fill="none" xmlns="http://www.w3.org/2000/svg">
+              fill="none">
               <path d="M72.655 0H50.4972V25.4923H72.655V0Z" fill="white" />
               <path
                 d="M50.4971 46.2251H72.655V82.1779C72.7562 90.8292 70.2941 99.3153 65.5815 106.557C60.9284 113.594 51.9459 121.966 35.3275 121.966C17.2263 121.966 6.67577 113.406 0.98291 108.715L14.9594 91.4743C20.5159 96.0112 25.8679 99.7435 35.4128 99.7435C42.6396 99.7435 45.5202 96.7988 47.2076 94.2307C49.5015 90.6637 50.6881 86.4923 50.6165 82.2464L50.4971 46.2251Z"
@@ -104,7 +103,7 @@
 
           </div>
           <div class="button-container-form">
-            <div class="button">Cancel</div>
+            <div class="button" onclick="toggleEditContainer()">Cancel</div>
             <div class="button">
               <div>Create contact</div>
               <div>/</div>

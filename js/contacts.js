@@ -81,13 +81,13 @@ function renderContactDetails(element, userArrayIndex, initials) {
             <div style="background-color: ${allUsersAlpha[userArrayIndex].ringColor}" class="letter-ring-big">${initials}</div>
             <div class="detail-name-container">
               <div class="detail-name">${allUsers[userArrayIndex].name}</div>
-              <div class="add-task text-16-400-blue">+ Add Task</div>
+              <div class="cursor-pointer text-16-400-blue" onclick="">+ Add Task</div>
             </div>
           </div>
           <!-- edit container -->
           <div class="contact-detail-edit-container" id="contact-detail-edit-container">
             <div class="contact-detail-title text-21-400-black">Contact Information</div>
-            <div class="contact-edit-item-container">
+            <div class="contact-edit-item-container" onclick="toggleEditContainer()">
               <svg width="21" height="30" viewBox="0 0 21 30" fill="#2A3647">
                 <path d="M2.87121 22.0156L7.69054 24.9405L20.3337 4.10842
                   C20.6203 3.63628 20.4698 3.02125 19.9977 2.73471L16.8881 0.847482
@@ -108,7 +108,7 @@ function renderContactDetails(element, userArrayIndex, initials) {
               <div class="text-16-400-black">${allUsers[userArrayIndex].phone}</div>
             </div>
           </div><!-- add button -->
-          <div class="button text-21-700-black">
+          <div class="button text-21-700-black" onclick="toggleEditContainer()">
             <div>New contact</div>
             <div><img src="./assets/img/contacts/new-contact.png" alt=""></div>
           </div>
@@ -187,4 +187,8 @@ function setRingColorList() {
   for (const user of allUsersAlpha) {
     user.ringColor = getRandomColor();
   }
+}
+
+function toggleEditContainer() {
+  document.getElementById('contacts-add-edit-container').classList.toggle('show-contacts-add-edit-container')
 }
