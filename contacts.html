@@ -72,41 +72,53 @@
                 d="M91.3187 118.593V104.76H94.0458L96.9775 110.461C97.7322 111.952 98.4036 113.483 98.9887 115.049C98.8353 113.337 98.7672 111.368 98.7672 109.177V104.76H101.017V118.593H98.4774L95.5117 112.772C94.7265 111.243 94.0266 109.671 93.4152 108.064C93.4152 109.776 93.5345 111.711 93.5345 114.09V118.576L91.3187 118.593Z"
                 fill="white" />
             </svg></div>
-          <div class="contacts-edit-headline">Add contact</div>
-          <div class="contacts-edit-subheadline">Tasks are better with a team!</div>
+          <div class="contacts-edit-headline" id="contacts-edit-headline">Add contact</div>
+          <div class="contacts-edit-subheadline" id="contacts-edit-subheadline">Tasks are better
+            with a team!</div>
           <div class="horizontal-blue-line"></div>
         </div>
         <div class="contacts-add-edit-right">
           <div class="contacts-add-edit-right-first-row">
             <div>
-              <div class="contacts-edit-right-avatar">
+              <div class="contacts-edit-right-avatar" id="contacts-edit-right-avatar">
                 <img src="./assets/img/contacts/avatar.png" alt="">
               </div>
             </div>
             <div class="contacts-edit-right-form">
               <div>
-                <input class="inputField" type="text" name="" id="newContactName"
+                <input class="inputField" type="text" name="" id="new-contact-name"
                   placeholder="Name">
-                <div class="required">This field is requiered!</div>
+                <div class="required" id="required-1">This field is requiered! Minimum 3
+                  characters!</div>
               </div>
               <div>
-                <input type="email" class="inputField" name="" id="newContactEmail"
+                <input type="email" class="inputField" name="" id="new-contact-email"
                   placeholder="Email">
-                <div class="required">Please input a valid mail adress!</div>
+                <div class="required " id="required-2">Please input a valid email adress!</div>
               </div>
               <div>
-                <input type="text" class="inputField" name="" id="newContactPhone"
+                <input type="text" class="inputField" name="" id="new-contact-phone"
                   placeholder="Phone">
-                <div class="required">This field is requiered!</div>
+                <div class="required" id="required-3">This field is requiered with minimum of 6
+                  digits!</div>
               </div>
             </div>
 
           </div>
           <div class="button-container-form">
-            <div class="button" onclick="toggleEditContainer()">Cancel</div>
-            <div class="button">
-              <div>Create contact</div>
-              <div>/</div>
+            <div class="button" onclick="toggleEditContainer()">
+              <div>Cancel</div>
+              <div style="margin-left: 12px;"><svg width="13" height="13" viewBox="0 0 13 13"
+                  fill="none" stroke="#2A3647">
+                  <path
+                    d="M6.501 6.49996L11.744 11.743M1.258 11.743L6.501 6.49996L1.258 11.743ZM11.744 1.25696L6.5 6.49996L11.744 1.25696ZM6.5 6.49996L1.258 1.25696L6.5 6.49996Z"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg></div>
+            </div>
+            <div class="button" onclick="addNewContact()">
+              <div id="edit-or-add-button">Create contact</div>
+              <div><img style="margin-left: 12px;" src="./assets/img/contacts/check-icon.png"
+                  alt=""></div>
             </div>
           </div>
         </div>

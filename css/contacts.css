@@ -245,13 +245,15 @@ select {
   cursor: pointer;
   transition: background-color 0.25s ease-in-out;
   border: 1px solid var(--darkblue);
+  background-color: var(--darkblue);
+  color: white;
 }
 
 .button:hover {
   background-color: var(--lightblue);
   border: 1px solid var(--lightblue);
-  transition: background-color 0.25s ease-in-out;
-  box-shadow: 0px 6px 4px rgb(0 0 0 / 10%);
+  transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out, border 0.25s ease-in-out;
+  box-shadow: 0px 6px 4px rgba(0, 0, 0, 10%);
 }
 
 .contacts-add-edit-container {
@@ -328,6 +330,9 @@ select {
   border: 2px solid white;
   margin-right: 84px;
   text-align: center;
+  color: white;
+  font-size: 47px;
+  font-weight: 500;
 }
 
 .contacts-edit-right-avatar img {
@@ -355,10 +360,26 @@ select {
 
 .button-container-form .button {
   display: flex;
-  border: 2px solid var(--darkblue);
   padding: 18px 10px 18px 10px;
   border-radius: 10px;
+}
+
+.button-container-form .button:first-child {
+  color: inherit;
   background-color: white;
+  font-weight: 500;
+}
+
+svg {
+  transition: stroke 0.25s ease-in-out;
+}
+
+.button-container-form .button:first-child:hover {
+  color: var(--lightblue);
+}
+
+.button-container-form .button:first-child:hover div svg {
+  stroke: var(--lightblue);
 }
 
 .inputField {
@@ -370,15 +391,15 @@ select {
   border-radius: 10px;
 }
 
-input#newContactName {
+input#new-contact-name {
   background-image: url(../assets/img/contacts/person-icon.png);
 }
 
-input#newContactEmail {
+input#new-contact-email {
   background-image: url(../assets/img/contacts/letter-icon.png);
 }
 
-input#newContactPhone {
+input#new-contact-phone {
   background-image: url(../assets/img/contacts/phone-icon.png);
 }
 
@@ -399,6 +420,37 @@ input {
   font-size: 0.6em;
   line-height: 1em;
   margin-left: 10px;
+  /* animation: shake .225s linear;
+  animation-iteration-count: 2; */
+  visibility: hidden;
+}
+
+.required-animation {
+  visibility: visible;
+  animation: shake.225s linear;
+  animation-iteration-count: 2;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  25% {
+    transform: translate(-5px, 0);
+  }
+
+  50% {
+    transform: translate(5px, 0);
+  }
+
+  75% {
+    transform: translate(-5px, 0);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
 
@@ -406,5 +458,9 @@ input {
 @media (width < 1370px) {
   .contacts-main-container {
     padding-left: 0px;
+  }
+
+  .contacts-list {
+    height: calc(100% - 80px);
   }
 }

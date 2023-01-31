@@ -5,6 +5,7 @@ let allUsers = [];
 let allUsersAlpha = [];
 let firstNameLetters = [];
 let ringColorList = [];
+let fullValidation = false;
 
 /**
  * load data from Server,
@@ -15,6 +16,7 @@ let ringColorList = [];
 async function initContacts() {
   await downloadFromServer();
   allUsers = JSON.parse(backend.getItem('allUsers')) || [];
+  allUsersAlpha = JSON.parse(backend.getItem('allUsers')) || [];
   await includeHTML();
   setNavActive('navContact');
   getLoggedUser();
@@ -67,8 +69,8 @@ function openContact(id) {
 function showContactDetails(id) {
   let element = document.getElementById('contacts-show-detail-container');
   id = id * 1;
-  let userArrayIndex = allUsers.findIndex(x => x.id === id);
-  let initials = getInitials(allUsers[userArrayIndex].name);
+  let userArrayIndex = allUsersAlpha.findIndex(x => x.id === id);
+  let initials = getInitials(allUsersAlpha[userArrayIndex].name);
   renderContactDetails(element, userArrayIndex, initials);
 }
 
@@ -80,14 +82,14 @@ function renderContactDetails(element, userArrayIndex, initials) {
           <div class="contact-detail-headline">
             <div style="background-color: ${allUsersAlpha[userArrayIndex].ringColor}" class="letter-ring-big">${initials}</div>
             <div class="detail-name-container">
-              <div class="detail-name">${allUsers[userArrayIndex].name}</div>
+              <div class="detail-name">${allUsersAlpha[userArrayIndex].name}</div>
               <div class="cursor-pointer text-16-400-blue" onclick="">+ Add Task</div>
             </div>
           </div>
           <!-- edit container -->
           <div class="contact-detail-edit-container" id="contact-detail-edit-container">
             <div class="contact-detail-title text-21-400-black">Contact Information</div>
-            <div class="contact-edit-item-container" onclick="toggleEditContainer()">
+            <div class="contact-edit-item-container" onclick="editContact(${allUsersAlpha[userArrayIndex].id})">
               <svg width="21" height="30" viewBox="0 0 21 30" fill="#2A3647">
                 <path d="M2.87121 22.0156L7.69054 24.9405L20.3337 4.10842
                   C20.6203 3.63628 20.4698 3.02125 19.9977 2.73471L16.8881 0.847482
@@ -101,11 +103,11 @@ function renderContactDetails(element, userArrayIndex, initials) {
           <div class="contacts-details-container text-16-700-black">
             <div class="contacts-detail-item">
               <div>Email</div>
-              <div class="text-16-400-blue">${allUsers[userArrayIndex].email}</div>
+              <div class="text-16-400-blue">${allUsersAlpha[userArrayIndex].email}</div>
             </div>
             <div class="contacts-detail-item">
               <div>Phone</div>
-              <div class="text-16-400-black">${allUsers[userArrayIndex].phone}</div>
+              <div class="text-16-400-black">${allUsersAlpha[userArrayIndex].phone}</div>
             </div>
           </div><!-- add button -->
           <div class="button text-21-700-black" onclick="toggleEditContainer()">
@@ -115,16 +117,23 @@ function renderContactDetails(element, userArrayIndex, initials) {
           `;
 }
 
+/**
+ * start rendering for contact list
+ */
 function renderContactList() {
-
   findFirstNameLetter();
   includeListHTML();
 }
 
+/**sort allUsers array alphabetical */
 function setNameListAlpha() {
-  allUsersAlpha = allUsers.sort((a, b) => a.name.localeCompare(b.name));
+
+  allUsersAlpha = allUsersAlpha.sort((a, b) => a.name.localeCompare(b.name));
 }
 
+/**
+ * create list of firstname letters of all active users 
+ */
 function findFirstNameLetter() {
   for (let i in allUsersAlpha) {
     const firstLetter = allUsersAlpha[i].name.charAt(0).toUpperCase();
@@ -133,15 +142,17 @@ function findFirstNameLetter() {
     }
   }
 }
-
+/** get initials for color ring */
 function getInitials(fullname) {
   return (getFirstLetter(fullname) + getSecondLetter(fullname));
 }
 
+/** get first letter of name */
 function getFirstLetter(fullname) {
   return fullname.charAt(0).toUpperCase();
 }
 
+/** get first letter of surname if existing */
 function getSecondLetter(fullname) {
   let nameArray = fullname.split(' ');
   if (nameArray.length > 1) {
@@ -151,6 +162,7 @@ function getSecondLetter(fullname) {
   }
 }
 
+/** start rendering of contact list */
 function includeListHTML() {
   const container = document.getElementById('contact-list');
   container.innerHTML = '';
@@ -166,6 +178,7 @@ function includeListHTML() {
   }
 }
 
+/** render big letter of contact list */
 function renderListLetter(container, i) {
   container.innerHTML += /*html*/ `<div class="contact-list-capital-container">
             <div class="contacts-list-capital text-21-400-black">${firstNameLetters[i]}</div>
@@ -173,6 +186,7 @@ function renderListLetter(container, i) {
           </div>`;
 }
 
+/** render user in contact list */
 function renderListItem(j, firstL, secondL, container) {
   container.innerHTML += /*html*/ `<div class="contacts-list-item" onclick="openContact(this.id)" id="${allUsersAlpha[j].id}">
             <div style="background-color: ${allUsersAlpha[j].ringColor}" class="letter-ring-small">${firstL}${secondL}</div>
@@ -183,12 +197,126 @@ function renderListItem(j, firstL, secondL, container) {
           </div>`;
 }
 
+/** get random ring color of initials */
 function setRingColorList() {
   for (const user of allUsersAlpha) {
     user.ringColor = getRandomColor();
   }
 }
 
+/** open or close add/edit contact container */
 function toggleEditContainer() {
-  document.getElementById('contacts-add-edit-container').classList.toggle('show-contacts-add-edit-container')
+  document.getElementById('contacts-add-edit-container').classList.toggle('show-contacts-add-edit-container');
+  document.getElementById('new-contact-name').value = '';
+  document.getElementById('new-contact-email').value = '';
+  document.getElementById('new-contact-phone').value = '';
+  unsetRequiredText();
+  renderAddBoxHTML();
 }
+
+/** validate input and create a new contact */
+function addNewContact() {
+  let name = document.getElementById('new-contact-name').value;
+  let email = document.getElementById('new-contact-email').value;
+  let phone = document.getElementById('new-contact-phone').value;
+  // newContactFormValidation(name, email, phone);
+  userId = allUsers.length
+  if (newContactFormValidation(name, email, phone)) {
+    const newContact = {
+      name: name,
+      email: email,
+      password: "join",
+      id: userId,
+      phone: phone
+    };
+    allUsers.push(newContact);
+    allUsersAlpha.push(newContact);
+    // await backend.setItem('allUsers', JSON.stringify(allUsers));
+    setNameListAlpha();
+    setRingColorList();
+    renderContactList();
+    toggleEditContainer();
+  };
+}
+
+/** set form validation parameter*/
+function newContactFormValidation(name, email, phone) {
+  let vName = false;
+  let vMail = false;
+  let vPhone = false;
+  var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  unsetRequiredText();
+  if (checkAllInput(vName, vMail, vPhone, validRegex, name, email, phone)) {
+    console.log('validation 2 true');
+    return true;
+  }
+}
+
+/** check validation of name, email and phone */
+function checkAllInput(vName, vMail, vPhone, validRegex, name, email, phone) {
+  if (name.trim().length > 2) {
+    vName = true;
+  } else {
+    document.getElementById('required-1').classList.add('required-animation');
+  }
+  if (email.trim().length > 7 && email.match(validRegex)) {
+    vMail = true;
+  } else {
+    document.getElementById('required-2').classList.add('required-animation');
+  }
+  if (phone.trim().length > 5) {
+    vPhone = true;
+  } else {
+    document.getElementById('required-3').classList.add('required-animation');
+  }
+  if (vName && vMail && vPhone) {
+    console.log('validation all true');
+    fullValidation = true;
+    return true;
+  }
+}
+
+/** unset error-text on new contact form */
+function unsetRequiredText() {
+  document.getElementById('required-1').classList.remove('required-animation');
+  document.getElementById('required-2').classList.remove('required-animation');
+  document.getElementById('required-3').classList.remove('required-animation');
+}
+
+/** edit a contact from list */
+function editContact(index) {
+  let element = allUsersAlpha.findIndex(x => x.id === index);
+  element = allUsersAlpha[element];
+  console.log('Element:', element)
+  toggleEditContainer();
+  document.getElementById('new-contact-name').value = element.name;
+  document.getElementById('new-contact-email').value = element.email;
+  if (document.getElementById('new-contact-phone').value = element.phone == undefined) {
+    document.getElementById('new-contact-phone').value = '';
+  } else { document.getElementById('new-contact-phone').value = element.phone; }
+  renderEditBoxHTML(element);
+}
+
+/** render edit box HTML */
+function renderEditBoxHTML(element) {
+  document.getElementById('edit-or-add-button').innerHTML = 'Save edit'
+  document.getElementById('contacts-edit-headline').innerHTML = 'Edit contact'
+  document.getElementById('contacts-edit-subheadline').innerHTML = '';
+  document.getElementById('contacts-edit-right-avatar').innerHTML = getInitials(element.name);
+  document.getElementById('contacts-edit-right-avatar').style.background = element.ringColor;
+}
+
+/** render add box html */
+function renderAddBoxHTML() {
+  document.getElementById('edit-or-add-button').innerHTML = 'Create contact'
+  document.getElementById('contacts-edit-headline').innerHTML = 'Add contact'
+  document.getElementById('contacts-edit-subheadline').innerHTML = 'Tasks are better with a team!';
+  document.getElementById('contacts-edit-right-avatar').innerHTML = '<img src="./assets/img/contacts/avatar.png" alt="avatar img">';
+  document.getElementById('contacts-edit-right-avatar').style.background = "var(--lightgrey)";
+}
+
+
+
+
+
+
