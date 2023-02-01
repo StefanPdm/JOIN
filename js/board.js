@@ -63,37 +63,46 @@ async function includeHTML() {
 
 let allTodos;
 let allProgress;
+let allAwait;
+let allDone;
 
 /**
  * clear content, find actual status of single task, render content new
  * @param {*} kindOfTasks 
  */
 async function updateHTML(kindOfTasks) {
-   document.getElementById('todo').innerHTML = '';
-   document.getElementById('progress').innerHTML = '';
-   document.getElementById('await').innerHTML = '';
-   document.getElementById('done').innerHTML = '';
-
-   document.getElementById('todo').classList.remove('highlight-div');
-   document.getElementById('progress').classList.remove('highlight-div');
-   document.getElementById('await').classList.remove('highlight-div');
-   document.getElementById('done').classList.remove('highlight-div');
-
-   allTodos = kindOfTasks.filter(t => t['status'] == 'todo');
-   allProgress = kindOfTasks.filter(t => t['status'] == 'progress');
-   allAwait = kindOfTasks.filter(t => t['status'] == 'await');
-   allDone = kindOfTasks.filter(t => t['status'] == 'done');
-
+   clearInnerHTML();
+   removeHighlightDiv();
+   filterAllTasks(kindOfTasks);
    renderTodos(allTodos);
    renderProgress(allProgress);
    renderAwait(allAwait);
    renderDone(allDone);
-
    renderPrio(kindOfTasks);
    renderSubtaskBoard(kindOfTasks);
    renderLetter(kindOfTasks);
 }
 
+function clearInnerHTML() {
+   document.getElementById('todo').innerHTML = '';
+   document.getElementById('progress').innerHTML = '';
+   document.getElementById('await').innerHTML = '';
+   document.getElementById('done').innerHTML = '';
+}
+
+function removeHighlightDiv() {
+   document.getElementById('todo').classList.remove('highlight-div');
+   document.getElementById('progress').classList.remove('highlight-div');
+   document.getElementById('await').classList.remove('highlight-div');
+   document.getElementById('done').classList.remove('highlight-div');
+}
+
+function filterAllTasks(kindOfTasks) {
+   allTodos = kindOfTasks.filter(t => t['status'] == 'todo');
+   allProgress = kindOfTasks.filter(t => t['status'] == 'progress');
+   allAwait = kindOfTasks.filter(t => t['status'] == 'await');
+   allDone = kindOfTasks.filter(t => t['status'] == 'done');
+}
 
 /**
  * find teammembers of a task and there first name capitals,
@@ -104,34 +113,37 @@ function renderLetter(kindOfTasks) {
       const element = kindOfTasks[i];
       let teamLength = element['assigned']['assigned'].length; //5
       let teamMember = [];   //Array of IDs of team members
-
       for (j = 0; j < teamLength; j++) {
          let memberID = element['assigned']['assigned'][j];
          teamMember.push(memberID);
       }
-
       kLenght = teamMember.length;
       if (kLenght > 3) { kLenght = 3 }
       for (k = 0; k < kLenght; k++) {
-
-         let memberName = allUsers.find(el => el.id == teamMember[k]);
-         memberName = memberName['name'];
-         let capitals = getCapitals(memberName);
-
-         document.getElementById(`team-circle-${k + 1}-${element['id']}`).innerHTML = capitals;
-         document.getElementById(`team-circle-${k + 1}-${element['id']}`).classList.remove('d-none');
-         let position = findIndexOf(memberName);
-         userColor = ringColorsOfUser[position];
-         document.getElementById(`team-circle-${k + 1}-${element['id']}`).style.backgroundColor = userColor;
+         renderTeamMemberRings(element, k, teamMember);
       }
-
       if (teamMember.length > 3) {
-         plusSign = teamMember.length - 2;
-         plusSign = '+' + plusSign;
-         document.getElementById(`team-circle-3-${element['id']}`).innerHTML = plusSign;
-         document.getElementById(`team-circle-3-${element['id']}`).style.background = "#2A3647";
+         renderNumberWithPlusSign(teamMember, element);
       }
    }
+}
+
+function renderTeamMemberRings(element, k, teamMember) {
+   let memberName = allUsers.find(el => el.id == teamMember[k]);
+   memberName = memberName['name'];
+   let capitals = getCapitals(memberName);
+   document.getElementById(`team-circle-${k + 1}-${element['id']}`).innerHTML = capitals;
+   document.getElementById(`team-circle-${k + 1}-${element['id']}`).classList.remove('d-none');
+   let position = findIndexOf(memberName);
+   userColor = ringColorsOfUser[position];
+   document.getElementById(`team-circle-${k + 1}-${element['id']}`).style.backgroundColor = userColor;
+}
+
+function renderNumberWithPlusSign(teamMember, element) {
+   plusSign = teamMember.length - 2;
+   plusSign = '+' + plusSign;
+   document.getElementById(`team-circle-3-${element['id']}`).innerHTML = plusSign;
+   document.getElementById(`team-circle-3-${element['id']}`).style.background = "#2A3647";
 }
 
 /**
@@ -166,18 +178,15 @@ function renderSubtaskBoard(kindOfTasks) {
       let progress = 5;
       const element = kindOfTasks[i]
       const length = element['subtasks']['subtasks'].length;
-
       for (j = 0; j < length; j++) {
          if (element['subtasks']['subtasks'][j]['subStatus'] === 'done') {
             subDone += 1;
          }
       }
-
       if (length > 0) {
          document.getElementById(`subtask-${element['id']}`).classList.remove('d-none');
          document.getElementById(`doneCounter-${element['id']}`).innerHTML = `${subDone}/${length} Done`;
       }
-
       if (subDone > 0) {
          progress = subDone * 100 / length;
          document.getElementById(`progressbar-blue-${element['id']}`).setAttribute('style', `width:${progress}%`);
@@ -259,15 +268,12 @@ function getRandomColor() {
 function renderPrio(kindOfTasks) {
    for (i = 0; i < kindOfTasks.length; i++) {
       const element = kindOfTasks[i];
-
       if (element['priority'] == 1) {
          document.getElementById(`card-prio-${element['id']}`).src = "./assets/img/add_task/low-arrow.svg";
       }
-
       if (element['priority'] == 2) {
          document.getElementById(`card-prio-${element['id']}`).src = "./assets/img/add_task/medium_equal.svg";
       }
-
       if (element['priority'] == 3) {
          document.getElementById(`card-prio-${element['id']}`).src = "./assets/img/add_task/urgent-arrow.svg";
       }
@@ -290,8 +296,6 @@ function generateCardHTML(element) {
    let searchPositionTitle = elementTitleLower.search(searchInput);
    let searchPositionDescription = elementDescriptionLower.search(searchInput);
    let length = searchInput.length;
-
-
    if (searchPositionTitle >= 0 && marker == 1) {
       let markerTextTitle = elementTitle.substr(searchPositionTitle, length);
       let behindTextTitle = elementTitle.substr(searchPositionTitle + length,);
@@ -301,7 +305,6 @@ function generateCardHTML(element) {
       }
       elementTitle = beforeTextTitle + '<mark>' + markerTextTitle + '</mark>' + behindTextTitle;
    }
-
    if (searchPositionDescription >= 0 && marker == 1) {
       let markerTextDescription = elementDescription.substr(searchPositionDescription, length);
       let behindTextDescription = elementDescription.substr(searchPositionDescription + length,);
@@ -310,7 +313,6 @@ function generateCardHTML(element) {
       }
       elementDescription = beforeTextDescription + '<mark>' + markerTextDescription + '</mark>' + behindTextDescription;
    }
-
    return renderCardHTML(element, elementTitle, elementDescription);
 }
 
@@ -324,18 +326,15 @@ function generateCardHTML(element) {
 function renderCardHTML(element, elementTitle, elementDescription) {
    return /*html*/ `
       <div class="card" draggable="true" id="${element['id']}" ondragstart="startDragging(${element['id']})" onclick="showTaskBig(this.id)">
-
           <div class="category" style="background-color:${element['categoryColor']};">${element['category']}</div>
           <div class="card-title text-16-700-black">${elementTitle}</div>
           <div class="card-description">${elementDescription}</div>
-
         <div class="subtasks-board d-none" id="subtask-${element['id']}">
             <div class="progressbar-gray">
                <div class="progressbar-blue" id="progressbar-blue-${element['id']}"></div>
             </div>
             <div id="doneCounter-${element['id']}">#/# Done</div>
          </div>
-
          <div class="card-footer">
             <div class="team-member">
                <div class="team-circle d-none" id="team-circle-1-${element['id']}">#</div>
@@ -374,10 +373,8 @@ function showTaskBig(showTaskID) {
 function renderShowSubtasks(element) {
    document.getElementById('show-subtask-list').innerHTML = '';
    let subtaskLength = element['subtasks']['subtasks'].length;
-
    if (subtaskLength > 0) {
       document.getElementById('show-subtask-container').classList.remove('d-none');
-
       for (i = 0; i < subtaskLength; i++) {
          let subtaskStatus = element['subtasks']['subtasks'][i]['subStatus'];
          let checkBox = "./assets/img/board/checkbox-unchecked.png";
@@ -419,19 +416,16 @@ function renderShowPriority(element) {
    let backgroundColr;
    let text;
    let sign;
-
    if (element['priority'] == 1) {
       backgroundColr = "#7AE229"
       sign = './assets/img/board/arrows-down-white.png';
       text = 'Low';
    }
-
    if (element['priority'] == 2) {
       backgroundColr = "#FFA800";
       sign = './assets/img/board/equal-sign-white.png';
       text = 'Medium';
    }
-
    if (element['priority'] == 3) {
       backgroundColr = "#FF3D00";
       sign = './assets/img/board/arrows-up-white.png';
@@ -448,14 +442,12 @@ function renderShowPriority(element) {
  */
 function renderShowAssigned(element) {
    document.getElementById('show-assigned').innerHTML = '';
-
    for (i = 0; i < element['assigned']['assigned'].length; i++) {
       let memberID = element['assigned']['assigned'][i];
       teamMember = allUsers.find(el => el.id == memberID).name;
       let memberCapitals = getCapitals(teamMember)
       let position = findIndexOf(teamMember);
       let userColor = ringColorsOfUser[position];
-
       document.getElementById('show-assigned').innerHTML += /*html*/ `<div class="show-member">
                         <div id="show-member-ring" class="show-task-team-circle" style="background-color:${userColor}">${memberCapitals}</div>
                         <div id="show-member-name">${teamMember}</div>
@@ -571,7 +563,6 @@ function setPrioColor(prio) {
    document.getElementById('edit-prio-2-img').src = "./assets/img/board/equal-sign-orange.png";
    document.getElementById('edit-prio-3').style = "background-color:#fff; color:black";
    document.getElementById('edit-prio-3-img').src = "./assets/img/board/arrows-up-red.png";
-
    if (prio == 1) {
       document.getElementById('edit-prio-1').style = "background-color:#7AE229; color:white";
       document.getElementById('edit-prio-1-img').src = "./assets/img/board/arrows-down-white.png";
@@ -694,8 +685,6 @@ function toggleAddContainer() {
    renderContacts();
 }
 
-
-
 /*******************************************
  ****************** darg and drop functions
  ******************************************/
@@ -748,7 +737,6 @@ function highlight(index) {
 function removeHighlight(index) {
    document.getElementById(index).classList.remove('highlight-div');
 }
-
 
 /**
  * starts when clicked on + on "board"-page (mobile version)

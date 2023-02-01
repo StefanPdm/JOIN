@@ -66,21 +66,7 @@
           <div id="col-6" class="ring c6" onclick="setNewCategoryColor('#00008b', this.id)">
           </div>
         </div>
-
         <!-------------------------- Assigned to ------------------------------------------------------------------------------------>
-        <!-- <div class="add-form">
-          <div class="category-container text-21-400-black">
-            <label class="category-label">Assigned to<div class="required-message d-none"
-                id="required-titel-4">(This field is required!)</div></label>
-            <div class="categories" id="assign">
-              <div onclick="pullDownMenu('assign', 'categories')">
-                <div class="category-line">Select contacts to assign</div>
-                <img src="./assets/img/add_task/pull-down-arrow.png" alt="">
-              </div>
-            </div>
-          </div>
-          </div>
-         </div> -->
         <div class="add-form">
           <div class="category-container text-21-400-black">
             <label class="category-label">Assigned to<div class="required-message d-none"
@@ -88,9 +74,7 @@
                 is
                 required!)</div>
             </label>
-
             <div class="assigned-list-container" id="assign">
-
               <div class="assign-line" onclick="pullDownMenu('assign', 'categories')">
                 <div>
                   Select contacts to
@@ -100,13 +84,10 @@
                   <img src="./assets/img/add_task/pull-down-arrow.png" alt="">
                 </div>
               </div>
-
               <div class="assigned-list" id="assigned-list"></div>
-
             </div>
             <form action="https://gruppe-376.developerakademie.net/Join/send_invitation_mail.php"
               method="post">
-
               <div class="invite-contact d-none" id="invite-contact">
                 <!-- Eingabe der mail -->
                 <input type="email" id="invite-mail" name="invite-mail" placeholder="Contact email"
@@ -127,13 +108,7 @@
         </div>
       </div>
     </div>
-
-
-
-
-
     <div class="add-line-vertical"></div>
-
     <!------------------------ right side Add Task ------------------------------------------------------>
     <div>
       <div class="add-form">
@@ -146,10 +121,6 @@
         </label>
         <input oninvalid="requiredText('5')" class="add-date" required type="date"
           value="dd/mm/yyyy" id="add-date" name="titel">
-
-        <!-- <div class="required-message d-none" id="required-titel-5">This field is required.</div>
-        </div> -->
-
         <div class="add-form ">
           <label>Prio<div class="required-message d-none" id="required-titel-6">This field is
               required.</div>
@@ -168,9 +139,7 @@
               <img src="./assets/img/add_task/low-arrow.svg" alt="">
             </div>
           </div>
-
         </div>
-
         <div class="add-form">
           <label for="category">Subtasks</label>
           <div class="addNewSubtask" id="addNewSubtask">
@@ -179,24 +148,20 @@
             </div>
           </div>
         </div>
-
         <div class="subtasks" id="subtask-container">
           <div><input type="checkbox" id="subtask-1"><span>Inform Customer Support</span></div>
           <div><input type="checkbox" id="subtask-2"><span>Send marketing paper</span></div>
         </div>
-
         <div class="button-container">
           <button type="button" onclick="clearForm()"><span>Clear</span><span>X</span></button>
           <button type="button" onclick="formValidation()">Create Task <img
               src="./assets/img/add_task/check.png" alt=""></button>
         </div>
-
         <div class="button-close-add" onclick="toggleAddContainer()">
           <img src="./assets/img/board/close-x.png" alt="">
         </div>
       </div>
     </div>
-
   </div>
   <!-- Added to Board message -->
   <div class="taskAddedMessage" id="taskAddedMessage">

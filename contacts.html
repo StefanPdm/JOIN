@@ -11,16 +11,21 @@
   <link rel="stylesheet" href="./css/contacts.css">
   <link rel="stylesheet" href="./css/navbar-header.css">
   <link rel="stylesheet" href="./css/responsiv.css">
-  <!-- <link rel="stylesheet" href="./css/add_Task_media_query.css"> -->
+  <link rel="stylesheet" href="./css/add_Task.css">
+  <link rel="stylesheet" href="./css/add_Task_media_query.css">
+  <!-- <link rel="stylesheet" href="./css/board.css"> -->
   <script src="main.js"></script>
   <script src="./js/mini_backend.js"></script>
   <script src="./js/contacts.js"></script>
   <script src="./js/board.js"></script>
+  <script src="./js/add_task.js"></script>
 
 </head>
 
 <body onload="initContacts()">
   <div class="maincontainer">
+
+
 
     <header>
       <div w3-include-html="./assets/templates/header.html"></div>
@@ -30,9 +35,18 @@
       <div w3-include-html="./assets/templates/side_menu.html"></div>
     </nav>
 
+
     <!-- Start Content -->
 
     <div class="contacts-main-container">
+      <!-- Begin of Add_Task_Container -->
+      <div id="add-task-container" class="add-task-container hide-task-container"
+        w3-include-html="./assets/templates/add_task_container.html">
+      </div>
+      <!-- End of Add_Task_Container -->
+
+
+
       <!-- left side -->
       <div class="contacts-list-container">
         <div class="contacts-list" id="contact-list"></div>
@@ -115,7 +129,7 @@
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg></div>
             </div>
-            <div class="button" onclick="addNewContact()">
+            <div class="button" onclick="saveNewOrEdit()">
               <div id="edit-or-add-button">Create contact</div>
               <div><img style="margin-left: 12px;" src="./assets/img/contacts/check-icon.png"
                   alt=""></div>

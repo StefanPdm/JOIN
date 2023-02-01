@@ -6,6 +6,7 @@ let allUsersAlpha = [];
 let firstNameLetters = [];
 let ringColorList = [];
 let fullValidation = false;
+let currentEditID;
 
 /**
  * load data from Server,
@@ -83,13 +84,13 @@ function renderContactDetails(element, userArrayIndex, initials) {
             <div style="background-color: ${allUsersAlpha[userArrayIndex].ringColor}" class="letter-ring-big">${initials}</div>
             <div class="detail-name-container">
               <div class="detail-name">${allUsersAlpha[userArrayIndex].name}</div>
-              <div class="cursor-pointer text-16-400-blue" onclick="">+ Add Task</div>
+              <div class="cursor-pointer text-16-400-blue" onclick="toggleAddContainer()">+ Add Task</div>
             </div>
           </div>
           <!-- edit container -->
           <div class="contact-detail-edit-container" id="contact-detail-edit-container">
             <div class="contact-detail-title text-21-400-black">Contact Information</div>
-            <div class="contact-edit-item-container" onclick="editContact(${allUsersAlpha[userArrayIndex].id})">
+            <div class="contact-edit-item-container" onclick="openEditContainer(${allUsersAlpha[userArrayIndex].id})">
               <svg width="21" height="30" viewBox="0 0 21 30" fill="#2A3647">
                 <path d="M2.87121 22.0156L7.69054 24.9405L20.3337 4.10842
                   C20.6203 3.63628 20.4698 3.02125 19.9977 2.73471L16.8881 0.847482
@@ -127,7 +128,6 @@ function renderContactList() {
 
 /**sort allUsers array alphabetical */
 function setNameListAlpha() {
-
   allUsersAlpha = allUsersAlpha.sort((a, b) => a.name.localeCompare(b.name));
 }
 
@@ -135,8 +135,9 @@ function setNameListAlpha() {
  * create list of firstname letters of all active users 
  */
 function findFirstNameLetter() {
+  firstNameLetters = [];
   for (let i in allUsersAlpha) {
-    const firstLetter = allUsersAlpha[i].name.charAt(0).toUpperCase();
+    let firstLetter = allUsersAlpha[i].name.charAt(0).toUpperCase();
     if (!firstNameLetters.includes(firstLetter)) {
       firstNameLetters.push(firstLetter);
     }
@@ -214,11 +215,42 @@ function toggleEditContainer() {
   renderAddBoxHTML();
 }
 
-/** validate input and create a new contact */
-function addNewContact() {
+/** check if it is an contact edit or a new contact */
+function saveNewOrEdit() {
   let name = document.getElementById('new-contact-name').value;
   let email = document.getElementById('new-contact-email').value;
   let phone = document.getElementById('new-contact-phone').value;
+  if (document.getElementById('edit-or-add-button').innerHTML === 'Save edit') {
+    editContact(name, email, phone);
+  } else if (document.getElementById('edit-or-add-button').innerHTML === 'Create contact') {
+    addNewContact(name, email, phone);
+  }
+}
+
+async function editContact(name, email, phone) {
+  console.log(name, email, phone);
+  if (newContactFormValidation(name, email, phone)) {
+    console.log('Start save edit contact')
+    let element = allUsers.findIndex(x => x.id === currentEditID);
+    let elementAlpha = allUsersAlpha.findIndex(x => x.id === currentEditID);
+    allUsers[element].name = name;
+    allUsers[element].email = email;
+    allUsers[element].phone = phone;
+    allUsersAlpha[elementAlpha].name = name;
+    allUsersAlpha[elementAlpha].email = email;
+    allUsersAlpha[elementAlpha].phone = phone;
+    await backend.setItem('allUsers', JSON.stringify(allUsers));
+    setNameListAlpha();
+    setRingColorList();
+    toggleEditContainer();
+    renderContactList();
+    openContact(currentEditID);
+  }
+}
+
+
+/** validate input and create a new contact */
+async function addNewContact(name, email, phone) {
   // newContactFormValidation(name, email, phone);
   userId = allUsers.length
   if (newContactFormValidation(name, email, phone)) {
@@ -231,11 +263,9 @@ function addNewContact() {
     };
     allUsers.push(newContact);
     allUsersAlpha.push(newContact);
+
     // await backend.setItem('allUsers', JSON.stringify(allUsers));
-    setNameListAlpha();
-    setRingColorList();
-    renderContactList();
-    toggleEditContainer();
+
   };
 }
 
@@ -247,7 +277,6 @@ function newContactFormValidation(name, email, phone) {
   var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   unsetRequiredText();
   if (checkAllInput(vName, vMail, vPhone, validRegex, name, email, phone)) {
-    console.log('validation 2 true');
     return true;
   }
 }
@@ -284,10 +313,10 @@ function unsetRequiredText() {
 }
 
 /** edit a contact from list */
-function editContact(index) {
+function openEditContainer(index) {
+  currentEditID = index;
   let element = allUsersAlpha.findIndex(x => x.id === index);
   element = allUsersAlpha[element];
-  console.log('Element:', element)
   toggleEditContainer();
   document.getElementById('new-contact-name').value = element.name;
   document.getElementById('new-contact-email').value = element.email;

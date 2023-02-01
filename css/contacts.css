@@ -21,6 +21,7 @@ select {
 
 .maincontainer {
   height: 100vh;
+  overflow: hidden;
 }
 
 .contacts-main-container {
@@ -453,6 +454,32 @@ input {
   }
 }
 
+/* ******* Add_Task Container */
+.add-task-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: absolute;
+  padding: 68px 80px;
+  left: 400px;
+  top: 60px;
+  width: fit-content;
+  z-index: 100;
+  background-color: white;
+  border-radius: 30px;
+  border: 0;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
+  background-color: white;
+  transition: all 0.5s ease;
+}
+
+.hide-task-container {
+  left: 105%;
+}
+
+.just-responsive {
+  display: none;
+}
 
 /* responsive  *******************************************/
 @media (width < 1370px) {
@@ -462,5 +489,9 @@ input {
 
   .contacts-list {
     height: calc(100% - 80px);
+  }
+
+  .show-contacts-add-edit-container {
+    left: calc((100% - 1212px) / 2);
   }
 }

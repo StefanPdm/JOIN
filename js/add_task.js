@@ -45,29 +45,41 @@ async function includeHTML() {
 
 
 /**
- * render registrated user in assign list
+ * start rendering list Assigned to
  */
 function renderContacts() {
    for (i = 0; i < allUsers.length; i++) {
       let userID = allUsers[i]['id'];
-
       if (allUsers[i]['name'] === currentUser['name']) {
-         document.getElementById('assigned-list').innerHTML += /*html*/ `
+         renderYourself(userID);
+      }
+      else { renderUser(userID); }
+   }
+   renderInvitation();
+}
+
+/** render yourself as YOU */
+function renderYourself(userID) {
+   document.getElementById('assigned-list').innerHTML += /*html*/ `
       <div class="assign-line">
          <div>You</div>
          <input type="checkbox" id="userID-${userID}">
       </div>
       `;
-      }
-      else {
-         document.getElementById('assigned-list').innerHTML += /*html*/ `
+}
+
+/** render users */
+function renderUser(userID) {
+   document.getElementById('assigned-list').innerHTML += /*html*/ `
       <div class="assign-line">
          <div>${allUsers[i]['name']}</div>
          <input type="checkbox" id="userID-${userID}">
       </div>
       `;
-      }
-   }
+}
+
+/** render invitation */
+function renderInvitation() {
    document.getElementById('assigned-list').innerHTML += /*html*/ `
       <div class="category-line check inviteNew" onclick="toggleInviteContact()">
          <div> Invite new Contact</div>
@@ -90,15 +102,6 @@ function toggleInviteContact() {
 function discardInvitation() {
    toggleInviteContact();
 }
-
-/** */
-// function sendInvitation() {
-
-//    toggleInviteContact();
-//    clearForm();
-//    document.getElementById('assign').classList.remove('open-category');
-
-// }
 
 /**
  * show required text for form validation
@@ -128,58 +131,48 @@ function formValidation() {
    assigned = checkAssigned();
    dueDate = document.getElementById('add-date').value;
    let d = checkDate();
-
    if (vtitle === '') {
       requiredText('1')
    } else {
       validation += 1;
       document.getElementById(`required-titel-1`).classList.add('d-none');
    }
-
    if (vdescription === '') {
       requiredText('2')
    } else {
       validation += 1;
       document.getElementById(`required-titel-2`).classList.add('d-none');
    }
-
    if (category == '') {
       requiredText('3')
    } else {
       validation += 1;
       document.getElementById(`required-titel-3`).classList.add('d-none');
    }
-
    if (assigned.length < 1) {
       requiredText('4')
    } else {
       validation += 1;
       document.getElementById(`required-titel-4`).classList.add('d-none');
    }
-
    if (vdate === '') {
       requiredText('5')
-
    } else {
       validation += 1;
       document.getElementById(`required-titel-5`).classList.add('d-none');
    }
-
    if (prio == 0) {
       requiredText('6')
-
    } else {
       validation += 1;
       document.getElementById(`required-titel-6`).classList.add('d-none');
    }
-
    if (d == false) {
       requiredText('7')
    } else {
       validation += 1;
       document.getElementById(`required-titel-7`).classList.add('d-none');
    }
-
    if (validation == 7) {
       document.getElementById('taskAddedMessage').classList.add('taskAddedMessageOut')
       addTask();
@@ -207,7 +200,6 @@ async function addTask() {
    let description = document.getElementById('add-description').value;
    let subtasks = checkSubtasks();
    taskID += 1;
-
    let task =
    {
       'id': taskID,
@@ -225,7 +217,6 @@ async function addTask() {
          subtasks
       }
    };
-
    allTasks.push(task);
    await backend.setItem('allTasks', JSON.stringify(allTasks));
    await backend.setItem('taskID', taskID);
@@ -245,7 +236,6 @@ function checkAssigned() {
    }
    return team
 }
-
 
 /**
  * get what subtask is checked and when push it to actual subtask array
@@ -295,7 +285,6 @@ function setPrio(index) {
    prio = index;
    prioContainer = document.getElementById(`prio-${index}`);
    prioContainer.classList.add('prio-active');
-
    if (index == 1) {
       prioContainer.style.background = "var(--prio-low-green)";
       document.getElementById(`prio-2`).style.background = "white";
@@ -325,9 +314,7 @@ function setPrio(index) {
 function pullDownMenu(index, closeDex) {
    document.getElementById(index).classList.toggle('open-category');
    document.getElementById(closeDex).classList.remove('open-category');
-
    document.getElementById('color-picker').classList.add('d-none');
-
 }
 
 /**
@@ -344,7 +331,6 @@ function selectCategory(index) {
       color = `<div class="ring green"></div>`
       categoryColor = '#20b2aa';
    }
-
    sel = index + color;
    document.getElementById('selected-category').innerHTML = sel;
    document.getElementById('categories').classList.remove('open-category');
@@ -443,11 +429,8 @@ function renderAddSubtask() {
    let render = /*html*/ `
    <div class="newTask">
       <input id="input-new-subtask" type="text" placeholder="New subtask">
-   
-      <button type="button" onclick="renderSubtask()"><img src="./assets/img/add_task/x-img.png" alt=""></button>
-
+         <button type="button" onclick="renderSubtask()"><img src="./assets/img/add_task/x-img.png" alt=""></button>
       <div></div>
-
       <button type="button" onclick="renderAddedSubtask()"><img src="./assets/img/add_task/check-black.png" alt=""></button>
    </div>`;
    return render;
