@@ -62,6 +62,19 @@ function openContact(id) {
   renderContactList();
   document.getElementById(id).classList.add('active-user');
   showContactDetails(id)
+  if (window.innerWidth < 1090) {
+    document.getElementById('contacts-list-container').classList.add('d-none');
+    document.getElementById('contacts-show-main-container').classList.add('showImportant');
+    document.getElementById('new-contact-button').classList.add('d-none');
+    document.getElementById('contacts-show-detail-container').innerHTML += `<div class="back-arrow" onclick="closeContact(${id})"><--</div>`;
+  };
+}
+
+function closeContact(id) {
+  document.getElementById('contacts-list-container').classList.remove('d-none');
+  document.getElementById('contacts-show-main-container').classList.remove('showImportant');
+  document.getElementById('new-contact-button').classList.remove('d-none');
+  showContactDetails(id);
 }
 
 /**
@@ -73,6 +86,7 @@ function showContactDetails(id) {
   let userArrayIndex = allUsersAlpha.findIndex(x => x.id === id);
   let initials = getInitials(allUsersAlpha[userArrayIndex].name);
   renderContactDetails(element, userArrayIndex, initials);
+
 }
 
 /**
