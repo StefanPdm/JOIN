@@ -111,10 +111,10 @@ function renderContactDetails(element, userArrayIndex, initials) {
               <div class="text-16-400-black">${allUsersAlpha[userArrayIndex].phone}</div>
             </div>
           </div><!-- add button -->
-          <div class="button text-21-700-black" onclick="toggleEditContainer()">
+          <!-- <div class="button text-21-700-black" onclick="toggleEditContainer()">
             <div>New contact</div>
             <div><img src="./assets/img/contacts/new-contact.png" alt=""></div>
-          </div>
+          </div> -->
           `;
 }
 
@@ -241,7 +241,7 @@ async function editContact(name, email, phone) {
     allUsersAlpha[elementAlpha].phone = phone;
     await backend.setItem('allUsers', JSON.stringify(allUsers));
     setNameListAlpha();
-    setRingColorList();
+    // setRingColorList();
     toggleEditContainer();
     renderContactList();
     openContact(currentEditID);
@@ -251,7 +251,6 @@ async function editContact(name, email, phone) {
 
 /** validate input and create a new contact */
 async function addNewContact(name, email, phone) {
-  // newContactFormValidation(name, email, phone);
   userId = allUsers.length
   if (newContactFormValidation(name, email, phone)) {
     const newContact = {
@@ -263,8 +262,12 @@ async function addNewContact(name, email, phone) {
     };
     allUsers.push(newContact);
     allUsersAlpha.push(newContact);
-
     // await backend.setItem('allUsers', JSON.stringify(allUsers));
+    setNameListAlpha();
+    setRingColorList();
+    toggleEditContainer();
+    renderContactList();
+    showContactCreatedMessage();
 
   };
 }
@@ -344,7 +347,13 @@ function renderAddBoxHTML() {
   document.getElementById('contacts-edit-right-avatar').style.background = "var(--lightgrey)";
 }
 
-
+/** show contact created massage */
+function showContactCreatedMessage() {
+  document.getElementById('contact-created-message').classList.add('show-contact-created-message')
+  setTimeout(() => {
+    document.getElementById('contact-created-message').classList.remove('show-contact-created-message')
+  }, 3000);
+}
 
 
 

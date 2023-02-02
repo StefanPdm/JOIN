@@ -21,28 +21,19 @@
 
 <body onload="initAddTask()">
    <div class="maincontainer">
-
       <header>
          <div w3-include-html="./assets/templates/header.html"></div>
       </header>
-
       <nav>
          <div w3-include-html="./assets/templates/side_menu.html"></div>
       </nav>
-
       <!-- Start Content -->
       <div class="add-task-main">
          <div class="add-task-headline">
             <span class="kpmt hide-text" id="kpmt">Kanban Project Management Tool</span>
             <span class="headline">Add Task</span>
          </div>
-
-         <!-- <form onsubmit="formValidation(); return false" onkeydown="return event.key != 'Enter';"> -->
-
-
-
          <div class="form-container">
-
             <!-- left Side -->
             <div>
                <div class=" add-form">
@@ -53,7 +44,6 @@
                   <input required oninvalid="requiredText('1')" type="text"
                      placeholder="Enter a title" id="add-title" name="titel">
                </div>
-
                <div class="add-form description">
                   <label for="description">Descriptions<div class="required-message d-none"
                         id="required-titel-2">
@@ -69,14 +59,12 @@
                      <label class="category-label">Category<div class="required-message d-none"
                            id="required-titel-3">(This field
                            is required!)</div></label>
-
                      <div class="categories" id="categories">
                         <div onclick="pullDownMenu('categories', 'assign')">
                            <div class="category-line" id="selected-category">Select task
                               Category</div>
                            <img src="./assets/img/add_task/pull-down-arrow.png" alt="">
                         </div>
-
                         <div class="category-line" onclick="newCategory()">New Category</div>
                         <div class="category-line" onclick="selectCategory('Sales')">
                            <div>Sales</div>
@@ -118,9 +106,7 @@
                            is
                            required!)</div>
                      </label>
-
                      <div class="assigned-list-container" id="assign">
-
                         <div class="assign-line" onclick="pullDownMenu('assign', 'categories')">
                            <div>
                               Select contacts to
@@ -130,14 +116,11 @@
                               <img src="./assets/img/add_task/pull-down-arrow.png" alt="">
                            </div>
                         </div>
-
                         <div class="assigned-list" id="assigned-list"></div>
-
                      </div>
                      <form
                         action="https://gruppe-376.developerakademie.net/Join/send_invitation_mail.php"
                         method="post">
-
                         <div class="invite-contact d-none" id="invite-contact">
                            <!-- Eingabe der mail -->
                            <input type="email" id="invite-mail" name="invite-mail"
@@ -157,11 +140,7 @@
                   </div>
                </div>
             </div>
-
-
-
             <div class="add-line-vertical"></div>
-
             <!------------------------ right side Add Task ------------------------------------------------------>
             <div>
                <div class="add-form">
@@ -174,11 +153,7 @@
                   </label>
                   <input oninvalid="requiredText('5')" class="add-date" required type="date"
                      value="dd/mm/yyyy" id="add-date" name="titel">
-
-                  <!-- <div class="required-message d-none" id="required-titel-5">This field is
-                        required.</div> -->
                </div>
-
                <div class="add-form ">
                   <label>Prio<div class="required-message d-none" id="required-titel-6">(This
                         field is required!)</div>
@@ -197,9 +172,7 @@
                         <img src="./assets/img/add_task/low-arrow.svg" alt="">
                      </div>
                   </div>
-
                </div>
-
                <div class="add-form">
                   <label for="category">Subtasks</label>
                   <div class="addNewSubtask" id="addNewSubtask">
@@ -208,14 +181,12 @@
                      </div>
                   </div>
                </div>
-
                <div class="subtasks" id="subtask-container">
                   <div><input type="checkbox" id="subtask-1"><span>Inform Customer Support</span>
                   </div>
                   <div><input type="checkbox" id="subtask-2"><span>Send marketing paper</span>
                   </div>
                </div>
-
                <div class="button-container">
                   <button type="button"
                      onclick="clearForm()"><span>Clear</span><span>X</span></button>

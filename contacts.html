@@ -8,12 +8,12 @@
   <title>Join</title>
   <link rel="icon" type="image/png" href="./assets/img/icon.png">
   <link rel="stylesheet" href="main.css">
-  <link rel="stylesheet" href="./css/contacts.css">
+
   <link rel="stylesheet" href="./css/navbar-header.css">
   <link rel="stylesheet" href="./css/responsiv.css">
   <link rel="stylesheet" href="./css/add_Task.css">
-  <link rel="stylesheet" href="./css/add_Task_media_query.css">
-  <!-- <link rel="stylesheet" href="./css/board.css"> -->
+  <!-- <link rel="stylesheet" href="./css/add_Task_media_query.css"> -->
+  <link rel="stylesheet" href="./css/contacts.css">
   <script src="main.js"></script>
   <script src="./js/mini_backend.js"></script>
   <script src="./js/contacts.js"></script>
@@ -24,34 +24,24 @@
 
 <body onload="initContacts()">
   <div class="maincontainer">
-
-
-
     <header>
       <div w3-include-html="./assets/templates/header.html"></div>
     </header>
-
     <nav>
       <div w3-include-html="./assets/templates/side_menu.html"></div>
     </nav>
-
-
     <!-- Start Content -->
-
     <div class="contacts-main-container">
       <!-- Begin of Add_Task_Container -->
       <div id="add-task-container" class="add-task-container hide-task-container"
         w3-include-html="./assets/templates/add_task_container.html">
       </div>
       <!-- End of Add_Task_Container -->
-
-
-
-      <!-- left side -->
+      <!-- Contacts left side -->
       <div class="contacts-list-container">
         <div class="contacts-list" id="contact-list"></div>
       </div>
-      <!-- right Side -->
+      <!-- Contacts right Side -->
       <div class="contacts-show-main-container ">
         <!-- right side headline -->
         <div class="contacts-headline-container">
@@ -61,13 +51,16 @@
         </div>
         <!-- content -->
         <div class="contacts-show-detail-container" id="contacts-show-detail-container">
-          <!-- add button -->
-          <div class="button text-21-700-black" onclick="toggleEditContainer()">
-            <div>New contact</div>
-            <div><img src="./assets/img/contacts/new-contact.png" alt=""></div>
-          </div>
+
         </div>
       </div>
+      <!-- add button -->
+      <div id="new-contact-button" class="button-contact text-21-700-black"
+        onclick="toggleEditContainer()">
+        <div>New contact</div>
+        <div><img src="./assets/img/contacts/new-contact.png" alt=""></div>
+      </div>
+
       <!--  add/edit contacts container-->
       <div class="contacts-add-edit-container" id="contacts-add-edit-container">
         <div class="contacts-add-edit-left">
@@ -120,7 +113,7 @@
 
           </div>
           <div class="button-container-form">
-            <div class="button" onclick="toggleEditContainer()">
+            <div class="button-contact" onclick="toggleEditContainer()">
               <div>Cancel</div>
               <div style="margin-left: 12px;"><svg width="13" height="13" viewBox="0 0 13 13"
                   fill="none" stroke="#2A3647">
@@ -129,7 +122,7 @@
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg></div>
             </div>
-            <div class="button" onclick="saveNewOrEdit()">
+            <div class="button-contact" onclick="saveNewOrEdit()">
               <div id="edit-or-add-button">Create contact</div>
               <div><img style="margin-left: 12px;" src="./assets/img/contacts/check-icon.png"
                   alt=""></div>
@@ -137,7 +130,10 @@
           </div>
         </div>
       </div>
-
+      <!-- Message Contact successfully created -->
+      <div class="contact-created-message" id="contact-created-message">
+        <div>Contact successfully created</div>
+      </div>
     </div>
   </div>
 </body>
