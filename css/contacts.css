@@ -15,6 +15,13 @@ select {
   font-weight: 400;
 }
 
+.contacts-detail-item a {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }
@@ -41,7 +48,7 @@ select {
   background-color: white;
   height: 100%;
   width: 453px;
-  padding: 0 12px 0 48px;
+  padding: 0 0 0 48px;
   box-shadow: 4px 0 6px 0px rgba(0, 0, 0, 0.08);
 }
 
@@ -80,7 +87,7 @@ select {
   padding: 15px 25px;
   cursor: pointer;
   border-radius: 10px;
-  width: 100%;
+  width: calc(100% - 2px);
 }
 
 .contacts-list-item:hover {
@@ -99,6 +106,7 @@ select {
   line-height: 42px;
   color: white;
   border: 1px solid white;
+  flex-shrink: 0;
 }
 
 .contacts-item-name {
@@ -116,6 +124,7 @@ select {
   color: var(--emailblue);
   font-size: 16px;
   font-weight: 400;
+  word-break: break-all;
 }
 
 .active-user {
@@ -522,6 +531,27 @@ input {
   cursor: pointer;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ffff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--gray-hover);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
 /* responsive  *******************************************/
 @media (width < 1370px) {
   .contacts-main-container {
@@ -643,10 +673,6 @@ input {
     height: 20px;
   }
 
-  .header-right {
-    /* display: none; */
-  }
-
   .contacts-headline-container {
     flex-direction: column;
     position: relative;
@@ -740,6 +766,7 @@ input {
   .letter-ring-small {
     min-width: 42px;
     margin-right: 25px;
+    flex-shrink: 0;
   }
 
   .contacts-list-capital {

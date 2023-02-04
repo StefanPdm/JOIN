@@ -1,65 +1,76 @@
 /* log in page */
 /* animation */
-    .animated-background {
-        position: absolute;
-        left: 0;
-        right: 0;
-        width: 100%;
-        height: 100vh;
+.animated-background {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 2;
+    animation: fadeOut 2s forwards;
+    background-color: #F6F7F8;
+}
+
+@keyframes fadeOut {
+    0% {
+        background-color: #F6F7F8;
         z-index: 2;
-        animation: fadeOut 2000ms forwards;
     }
 
-    @keyframes fadeOut { 
-        from {
-            background-color: #F6F7F8;
-            z-index: 2;
-        }
-    
-        to {
-            background-color: transparent;
-            z-index: 0;
-        }
+    50% {
+        background-color: #F6F7F8;
     }
 
-    .animated-icon {
-        position: absolute;
-        left: 0;
-        right: 0;
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    100% {
+        background-color: transparent;
+        z-index: 0;
+    }
+}
+
+.animated-icon {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-blue {
+    height: 200px;
+    position: fixed;
+    animation: rollOver 1s ease-in-out;
+    /* animation-delay: 1s; */
+}
+
+.hide {
+    display: none;
+}
+
+@keyframes rollOver {
+    0% {
+        top: 50%;
+        left: 50%;
+        transform: scale(1);
+        opacity: 1;
+        z-index: 3;
     }
 
-    .icon-blue {
-        height: 200px;
-        position: fixed;
-        animation: rollOver 500ms forwards;
+    90% {
+        opacity: 1;
+        z-index: 3;
     }
 
-    .hide {
-        display: none;
+    100% {
+        top: 5.5%;
+        left: 5.5%;
+        transform: scale(0.5);
+        opacity: 1;
+        z-index: 0;
     }
-
-    @keyframes rollOver { 
-        from {
-            top: 50%;
-            left: 50%;
-            transform: scale(1);
-            opacity: 1;
-            z-index: 3;
-        }
-    
-        to {
-            top: 5.5%;
-            left: 5.5%;
-            transform: scale(0.5);
-            opacity: 0;
-            z-index: 0;
-        }
-    }
+}
 
 
 /* log in page */
@@ -71,7 +82,6 @@
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
-    
 }
 
 /* header */
@@ -111,6 +121,7 @@
 
 /* content-box */
 .content-container {
+    position: relative;
     width: 652px;
     background-color: white;
     display: flex;
@@ -120,7 +131,6 @@
     border-radius: 20px;
     padding: 35px;
     margin-top: 135px;
-    z-index: 1;
 }
 
 /* blue line */
@@ -137,12 +147,14 @@
 .form {
     width: 100%;
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
 }
 
 .input {
     width: 422px;
+    height: 26px;
     font-family: 'Inter';
     font-weight: 400;
     font-size: 21px;
@@ -156,33 +168,50 @@
     background-size: 21px contain;
 }
 
+input:focus {
+    height: 26px;
+}
+
 .input::placeholder {
     color: #D1D1D1;
+
+    font-weight: 400;
+    font-size: 21px;
+}
+
+input[type="checkbox"] {
+    background-color: initial;
+    cursor: default;
+    appearance: auto;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: initial;
 }
 
 .wrong {
     width: 70%;
+    height: 15px;
     margin-top: -35px;
     margin-bottom: 35px;
     font-size: 12px;
     color: #ff001f;
+    /* visibility: visible; */
 }
 
 .click-me {
-    position: relative;
-    top: -75px;
-    /* keine Prozentangeben mehr möglich, warum?*/
-    left: 31%;
+    position: absolute;
+    top: 101px;
+    left: 79%;
     height: 21px;
     width: 21px;
     cursor: pointer;
-    /* background-color: aqua; */
 }
 
 .click-me-two {
-    position: relative;
-    top: -75px;
-    left: 31%;
+    position: absolute;
+    top: 101px;
+    left: 79%;
     height: 21px;
     width: 21px;
     cursor: pointer;
@@ -191,6 +220,7 @@
 
 .settings-container {
     width: 50%;
+    height: 20px;
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;
@@ -335,7 +365,7 @@
     padding-right: 10px;
 }
 
-@keyframes fadeIn { 
+@keyframes fadeIn {
     from {
         background-color: transparent;
         z-index: 0;
@@ -347,7 +377,7 @@
     }
 }
 
-@keyframes toMiddle { 
+@keyframes toMiddle {
     from {
         bottom: 0%;
     }
@@ -379,7 +409,7 @@
 /* sign-up success pop-up */
 .reset-success {
     background-color: rgba(209, 209, 209, 0.5);
-    position: fixed;  
+    position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
@@ -406,7 +436,7 @@
     animation: toMiddle 1000ms forwards;
 }
 
-@keyframes toMiddle { 
+@keyframes toMiddle {
     from {
         bottom: 0%;
     }
@@ -414,4 +444,52 @@
     to {
         bottom: 50%;
     }
+}
+
+.invisible {
+    visibility: invisible !important;
+    opacity: 0;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    height: 20px;
+}
+
+label {
+    margin: 0;
+    margin-left: 10px;
+    padding: 0;
+    line-height: 20px;
+}
+
+.signUpMessage {
+    position: absolute;
+    width: 300px;
+    /* height: 100px; */
+    top: -100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 18px;
+    background-color: var(--darkblue);
+    color: white;
+    border-radius: 5px;
+    font-family: 'Inter';
+    font-size: 23px;
+    font-weight: 500;
+    transition: all 0.5s ease-in-out;
+    z-index: 2;
+    text-align: center;
+}
+
+.showSignUpMessage {
+    top: 50%;
+    transition: all 0.5s ease-in-out;
+}
+
+.btn-container div {
+    box-sizing: border-box;
+    text-align: center;
+    line-height: calc(51px - 14px);
 }

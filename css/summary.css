@@ -171,7 +171,7 @@
 @media (max-width: 1369px) {
    .summary-main {
       margin: 135px 25px 0 25px;
-      min-height: 100vh;
+      min-height: calc(100vh - 135px);
       display: flex;
       align-items: center;
       animation: welcome 2s forwards;

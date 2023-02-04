@@ -35,7 +35,6 @@
          w3-include-html="./assets/templates/add_task_container.html">
       </div>
       <!-- End of Add_Task_Container -->
-
       <div class="maincontainer-board">
          <header>
             <div w3-include-html="./assets/templates/header.html"></div>
@@ -43,10 +42,6 @@
          <nav>
             <div w3-include-html="./assets/templates/side_menu.html"></div>
          </nav>
-
-
-
-
          <!-- Start Content -->
          <div class="board-main">
             <div class="board-headline">
@@ -67,12 +62,10 @@
                         class="text-21-700-black d-none"><img
                            src="./assets//img/board/plus button white.png" alt=""></button>
                   </div>
-
                </div>
             </div>
             <div class="task-main-container">
-               <!-- to do -->
-
+               <!--------------------------- to do -->
                <div class="task-sub-container todo">
                   <div class="text-21-700-black container-headline">
                      <span>To do</span>
@@ -92,7 +85,6 @@
                      ondragover="allowDrop(event); highlight('todo')"
                      ondragleave="removeHighlight('todo')"></div>
                </div>
-
                <!------------------------------ in progress -->
                <div class="task-sub-container progress">
                   <div class="text-21-700-black container-headline">
@@ -114,7 +106,6 @@
                      ondragleave="removeHighlight('progress')">
                   </div>
                </div>
-
                <!---------------------------------------- await -->
                <div class="task-sub-container await">
                   <div class="text-21-700-black container-headline">
@@ -159,9 +150,6 @@
                      ondragleave="removeHighlight('done')">
                   </div>
                </div>
-
-
-
             </div>
             <!-- Start Show big Cards -------------------------------------->
             <div class="show-task d-none" id="show-task">

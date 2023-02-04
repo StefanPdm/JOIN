@@ -194,7 +194,7 @@ body {
 }
 
 .progressbar-blue {
-   width: 5%;
+   width: 0%;
    height: 100%;
    background-color: var(--lightblue);
    border-radius: 2px;
@@ -235,10 +235,10 @@ body {
    position: absolute;
    display: flex;
    flex-direction: column;
-   top: 130px;
+   top: 50%;
    left: 50%;
    right: 50%;
-   transform: translateX(-50%);
+
    background-color: white;
    width: 623px;
    min-height: 400px;
@@ -249,6 +249,16 @@ body {
    box-sizing: border-box;
    animation: fadeIn 0.5s;
 }
+
+.show-task {
+   transform: translate(-50%, -50%);
+}
+
+.edit-card {
+   transform: translate(-50%, -40%);
+}
+
+
 
 @keyframes fadeIn {
    0% {

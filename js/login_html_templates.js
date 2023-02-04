@@ -8,6 +8,7 @@ function signUpHTML() {
     </div>
         
     <div class="content-container">
+        <div class="signUpMessage" id="signUpMessage"> You joined to JOIN.</div>
         <div class="return-arrow">
             <img src="./assets/img/arrow.png" onclick="openLogIn()">
         </div>
@@ -102,7 +103,7 @@ function passwordHTML() {
 
         <span class="instructions">Don't worry! We will send you an email with the instructions to reset your password.</span>
 
-        <form class="form" action="https://gruppe-376.developerakademie.net/Join/send_mail.php" method="POST">
+        <form class="form" action="https://stefan-heinemann.developerakademie.net/JOIN/send_mail.php" method="POST">
             <input class="input" placeholder="Email" name="email" required type="email" id="email" style="background-image: url(./assets/img/letter.png)">
             
             <div class="btn-container width margin-top-button">

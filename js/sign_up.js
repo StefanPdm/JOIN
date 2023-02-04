@@ -29,6 +29,9 @@ async function addToUsers() {
     email.value = ``;
     password.value = ``;
 
-    await backend.setItem('allUsers', JSON.stringify(users)); //speichert die daten auf dem server
-    window.location.href = 'index.html';
+    //await backend.setItem('allUsers', JSON.stringify(users)); //speichert die daten auf dem server
+    document.getElementById('signUpMessage').classList.add('showSignUpMessage');
+    setTimeout(() => {
+        window.location.href = 'index.html';
+    }, 2500);
 }

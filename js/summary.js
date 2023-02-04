@@ -75,13 +75,13 @@ function findStatus() {
 function findDayTime() {
    let date = new Date().getHours();
    if (date < 10) {
-      welcomeTime = " Good Morning"
+      welcomeTime = " Good Morning,"
    } else if (date <= 12) {
-      welcomeTime = " Good Day"
+      welcomeTime = " Good Day,"
    } else if (date < 17) {
-      welcomeTime = " Good Afternoon"
+      welcomeTime = " Good Afternoon,"
    } else {
-      welcomeTime = " Good Evening"
+      welcomeTime = " Good Evening,"
    }
    date = undefined;
 }
@@ -113,11 +113,11 @@ function finddDeadlineDate(allDueDates) {
 function getLoggedUser() {
    currentUser = JSON.parse(localStorage.getItem('logged User') || '9999');
    if (currentUser == '9999') {
-      document.getElementById('welcomeName').innerHTML = '';
+      document.getElementById('welcomeName').innerHTML = 'Dear Guest';
       return
    } else {
-      document.getElementById('welcomeTime').innerHTML += ',';
-      document.getElementById('welcomeTime-responsiv').innerHTML += ',';
+      // document.getElementById('welcomeTime').innerHTML += ',';
+      // document.getElementById('welcomeTime-responsiv').innerHTML += ',';
       document.getElementById('welcomeName').innerHTML = currentUser.name;
       document.getElementById('welcomeName-responsiv').innerHTML = currentUser.name;
       document.getElementById('headerUserImg').src = "./assets/img/header/christina.png";

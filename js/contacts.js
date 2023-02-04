@@ -70,6 +70,9 @@ function openContact(id) {
   };
 }
 
+/**
+ * close active contact from contact list when responsiv
+ */
 function closeContact(id) {
   document.getElementById('contacts-list-container').classList.remove('d-none');
   document.getElementById('contacts-show-main-container').classList.remove('showImportant');
@@ -85,14 +88,17 @@ function showContactDetails(id) {
   id = id * 1;
   let userArrayIndex = allUsersAlpha.findIndex(x => x.id === id);
   let initials = getInitials(allUsersAlpha[userArrayIndex].name);
-  renderContactDetails(element, userArrayIndex, initials);
-
+  let userPhone = allUsersAlpha[userArrayIndex].phone;
+  if (userPhone == undefined) {
+    userPhone = 'Please enter your phone number.';
+  }
+  renderContactDetails(element, userArrayIndex, initials, userPhone);
 }
 
 /**
  * render contact details
  */
-function renderContactDetails(element, userArrayIndex, initials) {
+function renderContactDetails(element, userArrayIndex, initials, userPhone) {
   element.innerHTML = /*html*/ `<!-- content headline -->
           <div class="contact-detail-headline">
             <div style="background-color: ${allUsersAlpha[userArrayIndex].ringColor}" class="letter-ring-big">${initials}</div>
@@ -118,17 +124,13 @@ function renderContactDetails(element, userArrayIndex, initials) {
           <div class="contacts-details-container text-16-700-black">
             <div class="contacts-detail-item">
               <div>Email</div>
-              <div class="text-16-400-blue">${allUsersAlpha[userArrayIndex].email}</div>
+              <a class="text-16-400-blue" href="mailto:${allUsersAlpha[userArrayIndex].email}">${allUsersAlpha[userArrayIndex].email}</a>
             </div>
             <div class="contacts-detail-item">
               <div>Phone</div>
-              <div class="text-16-400-black">${allUsersAlpha[userArrayIndex].phone}</div>
+              <div class="text-16-400-black">${userPhone}</div>
             </div>
-          </div><!-- add button -->
-          <!-- <div class="button text-21-700-black" onclick="toggleEditContainer()">
-            <div>New contact</div>
-            <div><img src="./assets/img/contacts/new-contact.png" alt=""></div>
-          </div> -->
+          </div>
           `;
 }
 
@@ -276,7 +278,7 @@ async function addNewContact(name, email, phone) {
     };
     allUsers.push(newContact);
     allUsersAlpha.push(newContact);
-    // await backend.setItem('allUsers', JSON.stringify(allUsers));
+    await backend.setItem('allUsers', JSON.stringify(allUsers));
     setNameListAlpha();
     setRingColorList();
     toggleEditContainer();

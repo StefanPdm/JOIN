@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="./css/login.css">
     <link rel="stylesheet" href="./css/login_media_query.css">
+
     <script src="./js/mini_backend.js"></script>
     <script src="main.js"></script>
     <script src="./js/login.js"></script>
@@ -19,10 +20,10 @@
 
 <body onload="init()">
     <div class="animated-background"></div>
-    
+
     <div class="animated-icon">
-        <img class="icon-blue hide-mobile" src="./assets/img/icon.png">
-        <img class="icon-white hide" src="./assets/img/icon-white.png">
+        <img class="icon-blue filee" src="./assets/img/icon.png">
+        <!-- <img class="icon-white hide" src="./assets/img/icon-white.png"> -->
     </div>
 
     <div class="padding-box" id="content-sign-up">
@@ -45,34 +46,35 @@
                 <input class="input" placeholder="Email" required type="email" id="email-login"
                     style="background-image: url(./assets/img/letter.png)">
 
-                <input class="input" placeholder="Password" required type="password" id="password-login"
-                    style="background-image: url(./assets/img/key.png)" onclick="changeBI()">
+                <input class="input" placeholder="Password" required type="password"
+                    id="password-login" style="background-image: url(./assets/img/key.png)"
+                    onclick="changeBI()">
 
-                <span class="wrong d-none" id="wrong-password">Wrong password</span>
+                <span class="wrong invisible" id="wrong-password">Wrong password</span>
 
-                <div class="click-me d-none" id="click-me" onclick="visiblePassword()"></div>
+                <div class="click-me invisible" id="click-me" onclick="visiblePassword()"></div>
 
-                <div class="click-me-two d-none" id="click-me-two" onclick="invisiblePassword()"></div>
+                <div class="click-me-two invisible" id="click-me-two" onclick="invisiblePassword()">
+                </div>
 
                 <div class="settings-container">
                     <div class="remember-me">
-                        <input type="checkbox" name="remember" id="checkbox" onclick="rememberMe()">
-
+                        <input type="checkbox" name="remember" id="checkbox">
                         <label for="remember">Remember me</label>
 
-                        <div class="uncheck-me d-none" id="uncheck" onclick="dontRememberMe()"></div>
+                        <!-- <div class="uncheck-me " id="uncheck" onclick="dontRememberMe()"></div> -->
                     </div>
 
                     <span onclick="openForgotPassword()">Forgot my password</span>
                 </div>
-
                 <div class="btn-container">
                     <button class="btn-long-dark bg-dark-blue text-white">Log in</button>
-                    
-                    <button class="btn-long-bright bg-white text-dark-blue" onclick="guestLogin()">Guest Log in</button>
+                    <div class="btn-long-bright bg-white text-dark-blue" onclick="guestLogin()">
+                        Guest Login</div>
                 </div>
             </form>
         </div>
     </div>
 </body>
+
 </html>
