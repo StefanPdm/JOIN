@@ -114,6 +114,7 @@ function getLoggedUser() {
    currentUser = JSON.parse(localStorage.getItem('logged User') || '9999');
    if (currentUser == '9999') {
       document.getElementById('welcomeName').innerHTML = 'Dear Guest';
+      document.getElementById('welcomeName-responsiv').innerHTML = 'Dear Guest';
       return
    } else {
       // document.getElementById('welcomeTime').innerHTML += ',';
